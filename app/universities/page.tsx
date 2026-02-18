@@ -47,7 +47,7 @@ export default function UniversitiesPage() {
       programs: 200,
       rating: 4.8,
       image: '🇨🇦',
-      description: 'Canada\'s leading university with diverse programs'
+      description: 'Canada&apos;s leading university with diverse programs'
     },
     {
       name: 'University of Melbourne',
@@ -279,7 +279,7 @@ export default function UniversitiesPage() {
               Iconic European Cities
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(248, 249, 250, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              Experience world-class education in Europe's most prestigious locations
+              Experience world-class education in Europe&apos;s most prestigious locations
             </p>
           </div>
           <EuropeanLandmarks />
