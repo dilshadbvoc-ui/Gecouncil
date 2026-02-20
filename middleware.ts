@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  // Redirect /login to /admin/login
+  if (request.nextUrl.pathname === '/login') {
+    return NextResponse.redirect(new URL('/admin/login', request.url));
+  }
+
   // Add custom headers
   const response = NextResponse.next();
   
