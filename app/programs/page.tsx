@@ -4,6 +4,7 @@ import ModernNavigation from '@/components/ModernNavigation';
 import { BookOpen, Clock, DollarSign, Globe } from 'lucide-react';
 import UniversityLogos from '@/components/UniversityLogos';
 import PremiumDivider from '@/components/PremiumDivider';
+import PageGallery from '@/components/PageGallery';
 
 export default function ProgramsPage() {
   const programs = [
@@ -243,6 +244,9 @@ export default function ProgramsPage() {
           <UniversityLogos />
         </div>
       </section>
+
+      {/* Page Gallery */}
+      <PageGallery page="programs" />
 
       <footer style={{
         padding: '3rem 1.5rem',

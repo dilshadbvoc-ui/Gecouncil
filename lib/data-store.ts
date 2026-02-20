@@ -1,4 +1,4 @@
-import { University, Director } from '@/types/admin';
+import { University, Director, PageGallery } from '@/types/admin';
 
 // In-memory data store (in production, use a real database)
 let universities: University[] = [
@@ -173,5 +173,82 @@ export const deleteDirector = (id: string): boolean => {
   if (index === -1) return false;
   
   directors.splice(index, 1);
+  return true;
+};
+
+
+// Page Galleries
+let pageGalleries: PageGallery[] = [
+  {
+    id: '1',
+    page: 'universities',
+    title: 'Campus Life',
+    description: 'Experience world-class campus facilities',
+    image: '/images/hero_campus.jpg',
+    order: 1
+  },
+  {
+    id: '2',
+    page: 'programs',
+    title: 'Academic Excellence',
+    description: 'Diverse programs across all disciplines',
+    image: '/images/feature_planning_student.jpg',
+    order: 1
+  },
+  {
+    id: '3',
+    page: 'about',
+    title: 'Our Community',
+    description: 'Building bridges between cultures',
+    image: '/images/feature_community_group.jpg',
+    order: 1
+  },
+  {
+    id: '4',
+    page: 'contact',
+    title: 'Get Support',
+    description: 'We are here to help you succeed',
+    image: '/images/feature_counseling_student.jpg',
+    order: 1
+  }
+];
+
+// Page Galleries CRUD
+export const getPageGalleries = (page?: string): PageGallery[] => {
+  if (page) {
+    return pageGalleries.filter(g => g.page === page).sort((a, b) => a.order - b.order);
+  }
+  return pageGalleries.sort((a, b) => a.order - b.order);
+};
+
+export const getPageGalleryById = (id: string): PageGallery | undefined => {
+  return pageGalleries.find(g => g.id === id);
+};
+
+export const createPageGallery = (gallery: Omit<PageGallery, 'id'>): PageGallery => {
+  const newGallery: PageGallery = {
+    ...gallery,
+    id: Date.now().toString()
+  };
+  pageGalleries.push(newGallery);
+  return newGallery;
+};
+
+export const updatePageGallery = (id: string, data: Partial<PageGallery>): PageGallery | null => {
+  const index = pageGalleries.findIndex(g => g.id === id);
+  if (index === -1) return null;
+  
+  pageGalleries[index] = {
+    ...pageGalleries[index],
+    ...data
+  };
+  return pageGalleries[index];
+};
+
+export const deletePageGallery = (id: string): boolean => {
+  const index = pageGalleries.findIndex(g => g.id === id);
+  if (index === -1) return false;
+  
+  pageGalleries.splice(index, 1);
   return true;
 };

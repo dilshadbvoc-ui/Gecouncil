@@ -6,6 +6,7 @@ import { useState } from 'react';
 import GlobalMap from '@/components/GlobalMap';
 import EuropeanFlags from '@/components/EuropeanFlags';
 import PremiumDivider from '@/components/PremiumDivider';
+import PageGallery from '@/components/PageGallery';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -395,6 +396,9 @@ export default function ContactPage() {
           <EuropeanFlags />
         </div>
       </section>
+
+      {/* Page Gallery */}
+      <PageGallery page="contact" />
 
       <footer style={{
         padding: '3rem 1.5rem',

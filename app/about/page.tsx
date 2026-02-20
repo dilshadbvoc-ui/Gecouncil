@@ -6,6 +6,7 @@ import { Target, Eye, Award, Users } from 'lucide-react';
 import EuropeanFlags from '@/components/EuropeanFlags';
 import PremiumDivider from '@/components/PremiumDivider';
 import PremiumStats from '@/components/PremiumStats';
+import PageGallery from '@/components/PageGallery';
 import { Director } from '@/types/admin';
 
 export default function AboutPage() {
@@ -458,6 +459,9 @@ export default function AboutPage() {
           <EuropeanFlags />
         </div>
       </section>
+
+      {/* Page Gallery */}
+      <PageGallery page="about" />
 
       <footer style={{
         padding: '3rem 1.5rem',

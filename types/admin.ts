@@ -36,6 +36,15 @@ export interface Director {
   order: number;
 }
 
+export interface PageGallery {
+  id: string;
+  page: 'universities' | 'programs' | 'about' | 'contact';
+  title: string;
+  description?: string;
+  image: string;
+  order: number;
+}
+
 export interface AdminUser {
   id: string;
   email: string;

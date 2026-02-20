@@ -146,6 +146,25 @@ export default function AdminDashboard() {
               </p>
             </div>
           </Link>
+
+          <Link href="/admin/galleries" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              borderRadius: '16px',
+              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%)',
+              border: '1px solid rgba(168, 85, 247, 0.3)',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}>
+              <Building2 style={{ width: '40px', height: '40px', color: '#a855f7', marginBottom: '1rem' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
+                Page Galleries
+              </h3>
+              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
+                Manage page image galleries
+              </p>
+            </div>
+          </Link>
         </div>
 
         {/* Quick View - Universities */}

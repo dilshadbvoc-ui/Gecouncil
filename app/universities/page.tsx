@@ -8,6 +8,7 @@ import EuropeanLandmarks from '@/components/EuropeanLandmarks';
 import UniversityLogos from '@/components/UniversityLogos';
 import PremiumDivider from '@/components/PremiumDivider';
 import PremiumStats from '@/components/PremiumStats';
+import PageGallery from '@/components/PageGallery';
 import { University } from '@/types/admin';
 
 export default function UniversitiesPage() {
@@ -304,6 +305,9 @@ export default function UniversitiesPage() {
           <UniversityLogos />
         </div>
       </section>
+
+      {/* Page Gallery */}
+      <PageGallery page="universities" />
 
       {/* Footer */}
       <footer style={{
