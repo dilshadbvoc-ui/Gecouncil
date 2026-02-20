@@ -3,10 +3,11 @@ import { getDirectorById, updateDirector, deleteDirector } from '@/lib/data-stor
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const director = getDirectorById(params.id);
+    const { id } = await params;
+    const director = getDirectorById(id);
     if (!director) {
       return NextResponse.json({ error: 'Director not found' }, { status: 404 });
     }
@@ -18,11 +19,12 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const data = await request.json();
-    const updated = updateDirector(params.id, data);
+    const updated = updateDirector(id, data);
     if (!updated) {
       return NextResponse.json({ error: 'Director not found' }, { status: 404 });
     }
@@ -34,10 +36,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = deleteDirector(params.id);
+    const { id } = await params;
+    const success = deleteDirector(id);
     if (!success) {
       return NextResponse.json({ error: 'Director not found' }, { status: 404 });
     }

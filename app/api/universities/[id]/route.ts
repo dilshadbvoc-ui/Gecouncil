@@ -3,10 +3,11 @@ import { getUniversityById, updateUniversity, deleteUniversity } from '@/lib/dat
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const university = getUniversityById(params.id);
+    const { id } = await params;
+    const university = getUniversityById(id);
     if (!university) {
       return NextResponse.json({ error: 'University not found' }, { status: 404 });
     }
@@ -18,11 +19,12 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const data = await request.json();
-    const updated = updateUniversity(params.id, data);
+    const updated = updateUniversity(id, data);
     if (!updated) {
       return NextResponse.json({ error: 'University not found' }, { status: 404 });
     }
@@ -34,10 +36,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = deleteUniversity(params.id);
+    const { id } = await params;
+    const success = deleteUniversity(id);
     if (!success) {
       return NextResponse.json({ error: 'University not found' }, { status: 404 });
     }
