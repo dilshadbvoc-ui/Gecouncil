@@ -88,7 +88,6 @@ export default function ModernNavigation() {
           <NavLink href="/programs" active={isActive('/programs')}>Programs</NavLink>
           <NavLink href="/about" active={isActive('/about')}>About</NavLink>
           <NavLink href="/contact" active={isActive('/contact')}>Contact</NavLink>
-          <NavLink href="/admin/login" active={isActive('/admin/login') || pathname?.startsWith('/admin')}>Admin</NavLink>
         </div>
 
         {/* CTA Buttons */}
@@ -185,9 +184,6 @@ export default function ModernNavigation() {
             </MobileNavLink>
             <MobileNavLink href="/contact" active={isActive('/contact')} onClick={() => setIsOpen(false)}>
               Contact
-            </MobileNavLink>
-            <MobileNavLink href="/admin/login" active={isActive('/admin/login') || pathname?.startsWith('/admin')} onClick={() => setIsOpen(false)}>
-              Admin
             </MobileNavLink>
             <div style={{ paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <button style={{
