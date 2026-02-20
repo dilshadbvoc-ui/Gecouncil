@@ -50,8 +50,31 @@ export default function UniversitiesPage() {
       <ModernNavigation />
 
       {/* Hero Section */}
-      <section style={{ paddingTop: '6rem', paddingBottom: '2rem', padding: '6rem 1rem 2rem' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
+      <section style={{ paddingTop: '6rem', paddingBottom: '2rem', padding: '6rem 1rem 2rem', position: 'relative', overflow: 'hidden' }}>
+        {/* Hero Background Image */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '400px',
+          backgroundImage: 'url(/images/hero_campus.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.15,
+          zIndex: 0
+        }} />
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '400px',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9))',
+          zIndex: 1
+        }} />
+        
+        <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
           <h1 style={{
             fontSize: 'clamp(2.5rem, 6vw, 4rem)',
             fontWeight: '800',
