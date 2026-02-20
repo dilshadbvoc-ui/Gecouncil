@@ -133,7 +133,10 @@ export default function ModernNavigation() {
             letterSpacing: '0.01em',
             boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
           }}
-          onClick={() => setShowPartnershipModal(true)}
+          onClick={() => {
+            console.log('Partner button clicked');
+            setShowPartnershipModal(true);
+          }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
             e.currentTarget.style.boxShadow = '0 8px 20px rgba(212, 175, 55, 0.4)';
@@ -212,6 +215,7 @@ export default function ModernNavigation() {
                 cursor: 'pointer'
               }}
               onClick={() => {
+                console.log('Mobile partner button clicked');
                 setIsOpen(false);
                 setShowPartnershipModal(true);
               }}>

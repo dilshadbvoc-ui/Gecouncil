@@ -20,6 +20,8 @@ export default function PartnershipModal({ isOpen, onClose }: PartnershipModalPr
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  console.log('PartnershipModal render - isOpen:', isOpen);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
