@@ -2,74 +2,37 @@
 
 import ModernNavigation from '@/components/ModernNavigation';
 import { Search, MapPin, GraduationCap, Star } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import EuropeanLandmarks from '@/components/EuropeanLandmarks';
 import UniversityLogos from '@/components/UniversityLogos';
 import PremiumDivider from '@/components/PremiumDivider';
 import PremiumStats from '@/components/PremiumStats';
+import { University } from '@/types/admin';
 
 export default function UniversitiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('all');
+  const [universities, setUniversities] = useState<University[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const universities = [
-    {
-      name: 'University of Amsterdam',
-      country: 'Netherlands',
-      location: 'Amsterdam',
-      programs: 120,
-      rating: 4.8,
-      image: '🇳🇱',
-      description: 'Leading research university with strong international focus'
-    },
-    {
-      name: 'Technical University of Munich',
-      country: 'Germany',
-      location: 'Munich',
-      programs: 95,
-      rating: 4.9,
-      image: '🇩🇪',
-      description: 'Top-ranked technical university in Europe'
-    },
-    {
-      name: 'University of Edinburgh',
-      country: 'UK',
-      location: 'Edinburgh',
-      programs: 150,
-      rating: 4.7,
-      image: '🇬🇧',
-      description: 'Historic university with world-class research facilities'
-    },
-    {
-      name: 'University of Toronto',
-      country: 'Canada',
-      location: 'Toronto',
-      programs: 200,
-      rating: 4.8,
-      image: '🇨🇦',
-      description: 'Canada&apos;s leading university with diverse programs'
-    },
-    {
-      name: 'University of Melbourne',
-      country: 'Australia',
-      location: 'Melbourne',
-      programs: 180,
-      rating: 4.7,
-      image: '🇦🇺',
-      description: 'Premier Australian university with global reputation'
-    },
-    {
-      name: 'ETH Zurich',
-      country: 'Switzerland',
-      location: 'Zurich',
-      programs: 85,
-      rating: 4.9,
-      image: '🇨🇭',
-      description: 'World-renowned for science and technology programs'
+  useEffect(() => {
+    fetchUniversities();
+  }, []);
+
+  const fetchUniversities = async () => {
+    try {
+      const response = await fetch('/api/universities');
+      const data = await response.json();
+      setUniversities(data);
+    } catch (error) {
+      console.error('Failed to fetch universities:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
-  const countries = ['all', 'Netherlands', 'Germany', 'UK', 'Canada', 'Australia', 'Switzerland'];
+  const countries = ['all', ...Array.from(new Set(universities.map(u => u.country)))];
 
   const filteredUniversities = universities.filter(uni => {
     const matchesSearch = uni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -180,16 +143,26 @@ export default function UniversitiesPage() {
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
             gap: '1.5rem'
           }}>
-            {filteredUniversities.map((uni, index) => (
-              <div
-                key={index}
-                className="premium-card"
-                style={{
-                  padding: '2rem',
-                  borderRadius: '20px',
-                  cursor: 'pointer'
-                }}
-              >
+            {loading ? (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: '#D4AF37' }}>
+                Loading universities...
+              </div>
+            ) : filteredUniversities.length === 0 ? (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'rgba(248, 249, 250, 0.7)' }}>
+                No universities found
+              </div>
+            ) : (
+              filteredUniversities.map((uni, index) => (
+                <Link key={uni.id || index} href={`/universities/${uni.id}`} style={{ textDecoration: 'none' }}>
+                  <div
+                    className="premium-card"
+                    style={{
+                      padding: '2rem',
+                      borderRadius: '20px',
+                      cursor: 'pointer',
+                      height: '100%'
+                    }}
+                  >
                 <div style={{
                   fontSize: '4rem',
                   marginBottom: '1rem',
@@ -239,9 +212,11 @@ export default function UniversitiesPage() {
                     <Star style={{ width: '16px', height: '16px', color: '#D4AF37', fill: '#D4AF37' }} />
                     <span style={{ fontSize: '0.875rem', fontWeight: '600' }}>{uni.rating}</span>
                   </div>
-                </div>
-              </div>
-            ))}
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
           </div>
         </div>
       </section>

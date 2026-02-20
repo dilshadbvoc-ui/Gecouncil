@@ -96,7 +96,7 @@ export default function Home() {
                 letterSpacing: '-0.02em'
               }} className="text-shadow-gold">
                 CONNECTING<br />
-                <span className="gold-accent">WORLD</span><br />
+                <span className="gold-accent">GLOBAL EDUCATION</span><br />
                 TO INDIA
               </h1>
               <p style={{
