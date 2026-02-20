@@ -19,7 +19,14 @@ export default function NewUniversityPage() {
     website: '',
     established: new Date().getFullYear(),
     students: 0,
-    details: ''
+    details: '',
+    keyPersons: [] as Array<{
+      id: string;
+      name: string;
+      position: string;
+      image: string;
+      bio?: string;
+    }>
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,6 +59,38 @@ export default function NewUniversityPage() {
     setFormData(prev => ({
       ...prev,
       [name]: type === 'number' ? parseFloat(value) || 0 : value
+    }));
+  };
+
+  const addKeyPerson = () => {
+    setFormData(prev => ({
+      ...prev,
+      keyPersons: [
+        ...prev.keyPersons,
+        {
+          id: Date.now().toString(),
+          name: '',
+          position: '',
+          image: '',
+          bio: ''
+        }
+      ]
+    }));
+  };
+
+  const updateKeyPerson = (index: number, field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      keyPersons: prev.keyPersons.map((person, i) => 
+        i === index ? { ...person, [field]: value } : person
+      )
+    }));
+  };
+
+  const removeKeyPerson = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      keyPersons: prev.keyPersons.filter((_, i) => i !== index)
     }));
   };
 
@@ -441,6 +480,197 @@ export default function NewUniversityPage() {
                 }}
               />
             </div>
+          </div>
+
+          {/* University Officials Section */}
+          <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(212, 175, 55, 0.3)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h2 style={{
+                fontSize: '1.25rem',
+                fontWeight: '700',
+                color: '#D4AF37',
+                fontFamily: 'Playfair Display, serif'
+              }}>
+                University Officials
+              </h2>
+              <button
+                type="button"
+                onClick={addKeyPerson}
+                style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '8px',
+                  background: 'rgba(212, 175, 55, 0.1)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  color: '#D4AF37',
+                  cursor: 'pointer',
+                  fontWeight: '500',
+                  fontSize: '0.875rem'
+                }}
+              >
+                + Add Official
+              </button>
+            </div>
+
+            {formData.keyPersons.length > 0 ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {formData.keyPersons.map((person, index) => (
+                  <div
+                    key={person.id}
+                    style={{
+                      padding: '1.5rem',
+                      borderRadius: '12px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(212, 175, 55, 0.2)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                      <h3 style={{ fontSize: '1rem', fontWeight: '600', color: 'rgba(248, 249, 250, 0.9)' }}>
+                        Official #{index + 1}
+                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => removeKeyPerson(index)}
+                        style={{
+                          padding: '0.25rem 0.75rem',
+                          borderRadius: '6px',
+                          background: 'rgba(220, 38, 38, 0.1)',
+                          border: '1px solid rgba(220, 38, 38, 0.3)',
+                          color: '#EF4444',
+                          cursor: 'pointer',
+                          fontSize: '0.75rem'
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          marginBottom: '0.5rem',
+                          fontSize: '0.75rem',
+                          fontWeight: '500',
+                          color: 'rgba(248, 249, 250, 0.6)'
+                        }}>
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          value={person.name}
+                          onChange={(e) => updateKeyPerson(index, 'name', e.target.value)}
+                          required
+                          style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(212, 175, 55, 0.2)',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            color: '#F8F9FA',
+                            fontSize: '0.875rem',
+                            outline: 'none'
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{
+                          display: 'block',
+                          marginBottom: '0.5rem',
+                          fontSize: '0.75rem',
+                          fontWeight: '500',
+                          color: 'rgba(248, 249, 250, 0.6)'
+                        }}>
+                          Position *
+                        </label>
+                        <input
+                          type="text"
+                          value={person.position}
+                          onChange={(e) => updateKeyPerson(index, 'position', e.target.value)}
+                          required
+                          style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(212, 175, 55, 0.2)',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            color: '#F8F9FA',
+                            fontSize: '0.875rem',
+                            outline: 'none'
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <label style={{
+                          display: 'block',
+                          marginBottom: '0.5rem',
+                          fontSize: '0.75rem',
+                          fontWeight: '500',
+                          color: 'rgba(248, 249, 250, 0.6)'
+                        }}>
+                          Image URL
+                        </label>
+                        <input
+                          type="url"
+                          value={person.image}
+                          onChange={(e) => updateKeyPerson(index, 'image', e.target.value)}
+                          placeholder="https://example.com/image.jpg"
+                          style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(212, 175, 55, 0.2)',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            color: '#F8F9FA',
+                            fontSize: '0.875rem',
+                            outline: 'none'
+                          }}
+                        />
+                      </div>
+
+                      <div style={{ gridColumn: '1 / -1' }}>
+                        <label style={{
+                          display: 'block',
+                          marginBottom: '0.5rem',
+                          fontSize: '0.75rem',
+                          fontWeight: '500',
+                          color: 'rgba(248, 249, 250, 0.6)'
+                        }}>
+                          Bio
+                        </label>
+                        <textarea
+                          value={person.bio}
+                          onChange={(e) => updateKeyPerson(index, 'bio', e.target.value)}
+                          rows={2}
+                          style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            borderRadius: '8px',
+                            border: '1px solid rgba(212, 175, 55, 0.2)',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            color: '#F8F9FA',
+                            fontSize: '0.875rem',
+                            outline: 'none',
+                            resize: 'vertical',
+                            fontFamily: 'Inter, sans-serif'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{
+                padding: '2rem',
+                textAlign: 'center',
+                color: 'rgba(248, 249, 250, 0.5)',
+                fontSize: '0.875rem'
+              }}>
+                No officials added yet. Click &quot;Add Official&quot; to add university leadership.
+              </div>
+            )}
           </div>
 
           {/* Submit Button */}
