@@ -114,6 +114,7 @@
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(244, 228, 193, 0.2));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
   }
   
