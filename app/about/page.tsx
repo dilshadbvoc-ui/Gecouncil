@@ -67,8 +67,8 @@ export default function AboutPage() {
               margin: '0 auto',
               lineHeight: '1.8'
             }}>
-              We are a B2B intermediary bringing world-class European universities to India, 
-              enabling Indian students to access premium international education on home soil since 2015.
+              We started with a simple belief: no student should have to choose between their dreams and their family. 
+              Since 2015, we&apos;ve been building bridges between world-class universities and Indian students who deserve every opportunity.
             </p>
             <div style={{
               height: '1px',
@@ -103,10 +103,10 @@ export default function AboutPage() {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Our Mission</h2>
+              }}>Our Heart</h2>
               <p style={{ color: 'rgba(248, 249, 250, 0.7)', lineHeight: '1.8', fontSize: '1.125rem' }}>
-                To bring European-standard education to India, making world-class learning accessible 
-                and transforming lives through quality education delivered locally.
+                To ensure that every talented student in India can access world-class education without leaving their loved ones behind. 
+                We believe education should bring families together, not tear them apart.
               </p>
             </div>
 
@@ -128,10 +128,10 @@ export default function AboutPage() {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Our Vision</h2>
+              }}>Our Dream</h2>
               <p style={{ color: 'rgba(248, 249, 250, 0.7)', lineHeight: '1.8', fontSize: '1.125rem' }}>
-                To become the most trusted partner for universities seeking to expand their presence 
-                in India and for Indian students seeking world-class education at home.
+                A future where every Indian student can pursue their passion, achieve their potential, and make their family proud - 
+                all while staying rooted in the community that shaped them.
               </p>
             </div>
           </div>
@@ -145,12 +145,12 @@ export default function AboutPage() {
               textAlign: 'center',
               fontFamily: 'Playfair Display, serif'
             }}>
-              What We <span style={{
+              How We <span style={{
                 background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Do</span>
+              }}>Help You</span>
             </h2>
             <div style={{
               padding: '2.5rem',
@@ -163,20 +163,20 @@ export default function AboutPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {[
                   {
-                    title: 'University Partnerships',
-                    description: 'We establish and manage partnerships with 100+ European universities to deliver their programs in India with the same quality standards.'
+                    title: 'We Listen to Your Story',
+                    description: 'Every student is unique. We take time to understand your dreams, your challenges, and what matters most to you and your family.'
                   },
                   {
-                    title: 'Local Program Delivery',
-                    description: 'We facilitate the setup and operation of European university programs on Indian campuses, ensuring authentic curriculum delivery.'
+                    title: 'We Find Your Path',
+                    description: 'With connections to universities worldwide, we help you discover programs that align with your passion and your future goals.'
                   },
                   {
-                    title: 'Student Enrollment',
-                    description: 'We recruit and enroll qualified Indian students into European-standard programs delivered locally, making world-class education accessible.'
+                    title: 'We Walk Beside You',
+                    description: 'From your first question to graduation day, we&apos;re here - answering questions, solving problems, celebrating victories.'
                   },
                   {
-                    title: 'Quality Assurance',
-                    description: 'Rigorous monitoring to ensure European academic standards are maintained in all programs delivered in India.'
+                    title: 'We Keep Our Promise',
+                    description: 'Quality education, close to home, with support that never wavers. That&apos;s our commitment to every student we serve.'
                   }
                 ].map((item, index) => (
                   <div 
@@ -216,12 +216,12 @@ export default function AboutPage() {
               textAlign: 'center',
               fontFamily: 'Playfair Display, serif'
             }}>
-              Why Universities <span style={{
+              Why Families <span style={{
                 background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Choose Us</span>
+              }}>Trust Us</span>
             </h2>
             <div style={{
               display: 'grid',
@@ -229,10 +229,10 @@ export default function AboutPage() {
               gap: '1.5rem'
             }}>
               {[
-                { icon: Users, text: 'Reach 10,000+ Indian students annually' },
-                { icon: Award, text: 'European-standard quality maintained' },
-                { icon: Target, text: 'Local delivery, global recognition' },
-                { icon: Eye, text: 'Transparent partnership model' }
+                { icon: Users, text: 'We&apos;ve helped over 10,000 students achieve their dreams' },
+                { icon: Award, text: 'Quality education that parents can trust' },
+                { icon: Target, text: 'Study locally, succeed globally' },
+                { icon: Eye, text: 'Honest guidance, no hidden surprises' }
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (

@@ -106,7 +106,7 @@ export default function Home() {
                 maxWidth: '100%',
                 fontWeight: '400'
               }}>
-                Bringing European-standard education to Indian shores, empowering students to transform their lives without leaving home
+                Every student deserves a chance to dream bigger. We bring world-class education to your doorstep, so you can build your future without leaving your family behind.
               </p>
 
               {/* Partner Button */}
@@ -171,7 +171,7 @@ export default function Home() {
 
               {/* Tags */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', paddingTop: '1rem' }}>
-                {['European Education in India', 'Local Delivery', 'Life-Changing Access'].map((tag) => (
+                {['Study Close to Home', 'Your Family, Your Future', 'Dreams Within Reach'].map((tag) => (
                   <span key={tag} style={{
                     padding: '0.625rem 1.25rem',
                     borderRadius: '10px',
@@ -321,7 +321,7 @@ export default function Home() {
             </h2>
             <PremiumDivider />
             <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              Partnering with prestigious universities across Europe
+              Because your dreams shouldn&apos;t require you to leave everything behind
             </p>
           </div>
           <EuropeanFlags />
@@ -382,7 +382,7 @@ export default function Home() {
               Connecting World to India
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              Bringing European excellence to Indian students
+              Your journey to a brighter future starts here, in your own community
             </p>
           </div>
           <GlobalMap />
@@ -403,7 +403,7 @@ export default function Home() {
               Study in Iconic Cities
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              Experience European culture and education
+              Where learning meets belonging - education that honors your roots while opening new doors
             </p>
           </div>
           <EuropeanLandmarks />
@@ -420,10 +420,10 @@ export default function Home() {
               marginBottom: '1rem',
               fontFamily: 'Space Grotesk, sans-serif'
             }}>
-              Why Partner With Us?
+              Why This Matters
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              We bring European-standard education to India, transforming lives through accessible world-class learning
+              Because choosing between your education and your family shouldn&apos;t be a choice you have to make
             </p>
           </div>
 
@@ -435,26 +435,26 @@ export default function Home() {
             {[
               {
                 icon: Globe,
-                title: 'European Standards',
-                description: 'Deliver authentic European university programs in India with the same quality and curriculum',
+                title: 'Stay Close to Home',
+                description: 'Study at world-renowned universities without saying goodbye to your parents, your culture, or the place you call home.',
                 color: '#60a5fa'
               },
               {
                 icon: Users,
-                title: 'Student Access',
-                description: 'Reach 10,000+ Indian students annually seeking world-class education without leaving home',
+                title: 'Your Community Matters',
+                description: 'Learn alongside friends who share your dreams, supported by family who can celebrate every milestone with you.',
                 color: '#a78bfa'
               },
               {
                 icon: Building2,
-                title: 'Local Infrastructure',
-                description: 'Complete setup and operational support for delivering your programs on Indian campuses',
+                title: 'Education That Fits Your Life',
+                description: 'No visa stress, no foreign expenses, no cultural shock - just quality education that respects who you are.',
                 color: '#f472b6'
               },
               {
                 icon: Award,
-                title: 'Quality Maintained',
-                description: 'Rigorous monitoring to ensure your academic standards are preserved in every program',
+                title: 'Your Success, Our Promise',
+                description: 'We believe in you. Every program is designed to help you succeed, with support every step of the way.',
                 color: '#fbbf24'
               }
             ].map((item, index) => {
@@ -515,10 +515,10 @@ export default function Home() {
               marginBottom: '1rem',
               fontFamily: 'Space Grotesk, sans-serif'
             }}>
-              How We Work
+              Your Journey With Us
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)' }}>
-              Simple, transparent, and effective partnership process
+              From your first question to graduation day, we&apos;re here for you
             </p>
           </div>
 
@@ -531,23 +531,23 @@ export default function Home() {
             {[
               {
                 step: '01',
-                title: 'Partnership Setup',
-                description: 'Establish partnership framework for delivering your programs in India with quality standards'
+                title: 'Share Your Dreams',
+                description: 'Tell us what you want to study and where you see yourself. We listen, understand, and guide you to the right path.'
               },
               {
                 step: '02',
-                title: 'Infrastructure Setup',
-                description: 'Set up local campus facilities and resources to deliver European-standard education'
+                title: 'Find Your Perfect Fit',
+                description: 'We help you discover programs that match your passion, your goals, and your unique story.'
               },
               {
                 step: '03',
-                title: 'Student Enrollment',
-                description: 'Recruit and enroll qualified Indian students into your programs delivered locally'
+                title: 'Start Your Journey',
+                description: 'Begin your studies with confidence, knowing your family is nearby and your future is bright.'
               },
               {
                 step: '04',
-                title: 'Quality Delivery',
-                description: 'Ensure authentic curriculum delivery and maintain European academic standards throughout'
+                title: 'Grow and Succeed',
+                description: 'Learn, grow, and achieve your dreams with support from teachers who care and a community that believes in you.'
               }
             ].map((item, index) => (
               <div key={index} style={{ position: 'relative' }}>
@@ -602,7 +602,7 @@ export default function Home() {
               marginBottom: '1rem',
               fontFamily: 'Space Grotesk, sans-serif'
             }}>
-              Our Impact in Numbers
+              Real Stories, Real Impact
             </h2>
           </div>
 
@@ -612,10 +612,10 @@ export default function Home() {
             gap: '2rem'
           }}>
             {[
-              { number: '100+', label: 'Partner Universities', icon: Building2 },
-              { number: '10,000+', label: 'Students Placed', icon: Users },
-              { number: '25+', label: 'Countries', icon: Globe },
-              { number: '95%', label: 'Visa Success Rate', icon: CheckCircle },
+              { number: '100+', label: 'Universities Believe in Us', icon: Building2 },
+              { number: '10,000+', label: 'Dreams We&apos;ve Supported', icon: Users },
+              { number: '25+', label: 'Countries Connected', icon: Globe },
+              { number: '95%', label: 'Students Achieving Their Goals', icon: CheckCircle },
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
@@ -682,7 +682,7 @@ export default function Home() {
               marginBottom: '1rem',
               fontFamily: 'Space Grotesk, sans-serif'
             }}>
-              Ready to Expand Your Reach?
+              Ready to Start Your Journey?
             </h2>
             <p style={{
               fontSize: '1.125rem',
@@ -691,7 +691,7 @@ export default function Home() {
               maxWidth: '600px',
               margin: '0 auto 2rem'
             }}>
-              Join our network of leading universities and connect with talented Indian students
+              Your story matters. Your dreams are valid. Let&apos;s make them happen together, right here at home.
             </p>
             <div style={{
               display: 'flex',
@@ -714,7 +714,7 @@ export default function Home() {
                 alignItems: 'center',
                 gap: '0.5rem'
               }}>
-                Schedule a Partnership Call
+                Talk to Us Today
                 <ArrowRight style={{ width: '20px', height: '20px' }} />
               </button>
               <Link
@@ -725,7 +725,7 @@ export default function Home() {
                   textDecoration: 'none'
                 }}
               >
-                or send us an email →
+                or reach out anytime →
               </Link>
             </div>
           </div>

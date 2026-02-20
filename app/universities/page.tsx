@@ -212,11 +212,11 @@ export default function UniversitiesPage() {
                     <Star style={{ width: '16px', height: '16px', color: '#D4AF37', fill: '#D4AF37' }} />
                     <span style={{ fontSize: '0.875rem', fontWeight: '600' }}>{uni.rating}</span>
                   </div>
+                </div>
                   </div>
                 </Link>
               ))
             )}
-          </div>
           </div>
         </div>
       </section>
