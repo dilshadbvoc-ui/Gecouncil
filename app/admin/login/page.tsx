@@ -188,20 +188,6 @@ export default function AdminLogin() {
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
-        <div style={{
-          marginTop: '1.5rem',
-          padding: '1rem',
-          borderRadius: '8px',
-          background: 'rgba(212, 175, 55, 0.1)',
-          border: '1px solid rgba(212, 175, 55, 0.2)',
-          fontSize: '0.75rem',
-          color: 'rgba(248, 249, 250, 0.6)'
-        }}>
-          <strong>Demo Credentials:</strong><br />
-          Email: admin@gecouncil.com<br />
-          Password: admin123
-        </div>
       </div>
     </div>
   );
