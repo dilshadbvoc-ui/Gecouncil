@@ -1,12 +1,32 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import ModernNavigation from '@/components/ModernNavigation';
 import { Target, Eye, Award, Users } from 'lucide-react';
 import EuropeanFlags from '@/components/EuropeanFlags';
 import PremiumDivider from '@/components/PremiumDivider';
 import PremiumStats from '@/components/PremiumStats';
+import { Director } from '@/types/admin';
 
 export default function AboutPage() {
+  const [directors, setDirectors] = useState<Director[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchDirectors();
+  }, []);
+
+  const fetchDirectors = async () => {
+    try {
+      const response = await fetch('/api/directors');
+      const data = await response.json();
+      setDirectors(data);
+    } catch (error) {
+      console.error('Failed to fetch directors:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div style={{
       minHeight: '100vh',
@@ -279,8 +299,124 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Directors Section */}
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              fontFamily: 'Playfair Display, serif',
+              color: '#D4AF37'
+            }}>
+              Our Leadership Team
+            </h2>
+            <PremiumDivider />
+            <p style={{ fontSize: '1.125rem', color: 'rgba(248, 249, 250, 0.7)', maxWidth: '700px', margin: '1rem auto 0' }}>
+              Meet the dedicated professionals guiding students toward their dreams
+            </p>
+          </div>
+
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '3rem', color: '#D4AF37' }}>
+              Loading directors...
+            </div>
+          ) : (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '2rem'
+            }}>
+              {directors.map((director) => (
+                <div
+                  key={director.id}
+                  style={{
+                    padding: '2rem',
+                    borderRadius: '20px',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
+                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    backdropFilter: 'blur(20px)',
+                    textAlign: 'center',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(212, 175, 55, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+                  }}
+                >
+                  {/* Image Placeholder */}
+                  <div style={{
+                    width: '150px',
+                    height: '150px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                    border: '3px solid rgba(212, 175, 55, 0.4)',
+                    margin: '0 auto 1.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '4rem',
+                    overflow: 'hidden',
+                    position: 'relative'
+                  }}>
+                    {director.image && director.image.startsWith('http') ? (
+                      <img 
+                        src={director.image} 
+                        alt={director.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    ) : (
+                      <span style={{ fontSize: '4rem' }}>👤</span>
+                    )}
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '1.25rem',
+                    fontWeight: '700',
+                    color: '#F8F9FA',
+                    marginBottom: '0.5rem',
+                    fontFamily: 'Playfair Display, serif'
+                  }}>
+                    {director.name}
+                  </h3>
+
+                  <p style={{
+                    fontSize: '0.9375rem',
+                    color: '#D4AF37',
+                    marginBottom: '1rem',
+                    fontWeight: '600'
+                  }}>
+                    {director.position}
+                  </p>
+
+                  {director.bio && (
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      color: 'rgba(248, 249, 250, 0.7)',
+                      lineHeight: '1.6'
+                    }}>
+                      {director.bio}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* European Network Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{

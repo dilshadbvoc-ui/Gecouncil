@@ -261,11 +261,11 @@ export default function UniversityDetailPage() {
                 color: '#D4AF37',
                 textAlign: 'center'
               }}>
-                Key Personnel
+                University Officials
               </h2>
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                 gap: '2rem'
               }}>
                 {university.keyPersons.map((person) => (
@@ -276,34 +276,62 @@ export default function UniversityDetailPage() {
                       borderRadius: '16px',
                       background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
                       border: '1px solid rgba(212, 175, 55, 0.3)',
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-5px)';
+                      e.currentTarget.style.boxShadow = '0 8px 30px rgba(212, 175, 55, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
                     }}
                   >
+                    {/* Image Area */}
                     <div style={{
-                      width: '120px',
-                      height: '120px',
+                      width: '140px',
+                      height: '140px',
                       borderRadius: '50%',
-                      background: 'rgba(212, 175, 55, 0.2)',
-                      margin: '0 auto 1rem',
+                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                      border: '3px solid rgba(212, 175, 55, 0.4)',
+                      margin: '0 auto 1.5rem',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '3rem'
+                      overflow: 'hidden',
+                      position: 'relative'
                     }}>
-                      👤
+                      {person.image && person.image.startsWith('http') ? (
+                        <img 
+                          src={person.image} 
+                          alt={person.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      ) : (
+                        <span style={{ fontSize: '3.5rem' }}>👤</span>
+                      )}
                     </div>
+
                     <h3 style={{
                       fontSize: '1.125rem',
                       fontWeight: '600',
                       color: '#F8F9FA',
-                      marginBottom: '0.5rem'
+                      marginBottom: '0.5rem',
+                      fontFamily: 'Playfair Display, serif'
                     }}>
                       {person.name}
                     </h3>
                     <p style={{
                       fontSize: '0.875rem',
                       color: '#D4AF37',
-                      marginBottom: '0.75rem'
+                      marginBottom: '0.75rem',
+                      fontWeight: '600'
                     }}>
                       {person.position}
                     </p>
