@@ -45,6 +45,19 @@ export interface PageGallery {
   order: number;
 }
 
+export interface Enquiry {
+  id: string;
+  type: 'partnership' | 'general';
+  universityName?: string;
+  contactPerson: string;
+  email: string;
+  phone?: string;
+  country?: string;
+  message: string;
+  status: 'new' | 'in-progress' | 'completed';
+  createdAt: Date;
+}
+
 export interface AdminUser {
   id: string;
   email: string;

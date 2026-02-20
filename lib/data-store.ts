@@ -1,4 +1,4 @@
-import { University, Director, PageGallery } from '@/types/admin';
+import { University, Director, PageGallery, Enquiry } from '@/types/admin';
 
 // In-memory data store (in production, use a real database)
 let universities: University[] = [
@@ -250,5 +250,47 @@ export const deletePageGallery = (id: string): boolean => {
   if (index === -1) return false;
   
   pageGalleries.splice(index, 1);
+  return true;
+};
+
+
+// Enquiries
+let enquiries: Enquiry[] = [];
+
+// Enquiries CRUD
+export const getEnquiries = (): Enquiry[] => {
+  return enquiries.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+};
+
+export const getEnquiryById = (id: string): Enquiry | undefined => {
+  return enquiries.find(e => e.id === id);
+};
+
+export const createEnquiry = (enquiry: Omit<Enquiry, 'id' | 'createdAt'>): Enquiry => {
+  const newEnquiry: Enquiry = {
+    ...enquiry,
+    id: Date.now().toString(),
+    createdAt: new Date()
+  };
+  enquiries.push(newEnquiry);
+  return newEnquiry;
+};
+
+export const updateEnquiry = (id: string, data: Partial<Enquiry>): Enquiry | null => {
+  const index = enquiries.findIndex(e => e.id === id);
+  if (index === -1) return null;
+  
+  enquiries[index] = {
+    ...enquiries[index],
+    ...data
+  };
+  return enquiries[index];
+};
+
+export const deleteEnquiry = (id: string): boolean => {
+  const index = enquiries.findIndex(e => e.id === id);
+  if (index === -1) return false;
+  
+  enquiries.splice(index, 1);
   return true;
 };

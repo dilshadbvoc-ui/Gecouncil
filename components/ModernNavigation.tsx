@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import PartnershipModal from './PartnershipModal';
 
 export default function ModernNavigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showPartnershipModal, setShowPartnershipModal] = useState(false);
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
@@ -131,6 +133,7 @@ export default function ModernNavigation() {
             letterSpacing: '0.01em',
             boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
           }}
+          onClick={() => setShowPartnershipModal(true)}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
             e.currentTarget.style.boxShadow = '0 8px 20px rgba(212, 175, 55, 0.4)';
@@ -207,6 +210,10 @@ export default function ModernNavigation() {
                 fontSize: '0.875rem',
                 fontWeight: '700',
                 cursor: 'pointer'
+              }}
+              onClick={() => {
+                setIsOpen(false);
+                setShowPartnershipModal(true);
               }}>
                 Partner With Us
               </button>
@@ -214,6 +221,8 @@ export default function ModernNavigation() {
           </div>
         </div>
       )}
+
+      <PartnershipModal isOpen={showPartnershipModal} onClose={() => setShowPartnershipModal(false)} />
 
       <style dangerouslySetInnerHTML={{__html: `
         @media (min-width: 768px) {

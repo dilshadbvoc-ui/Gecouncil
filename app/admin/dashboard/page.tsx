@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Building2, Users, LogOut, Plus, Edit, Trash2 } from 'lucide-react';
+import { Building2, Users, LogOut, Plus, Edit, Trash2, Mail } from 'lucide-react';
 import { University } from '@/types/admin';
 
 export default function AdminDashboard() {
@@ -162,6 +162,25 @@ export default function AdminDashboard() {
               </h3>
               <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
                 Manage page image galleries
+              </p>
+            </div>
+          </Link>
+
+          <Link href="/admin/enquiries" style={{ textDecoration: 'none' }}>
+            <div style={{
+              padding: '2rem',
+              borderRadius: '16px',
+              background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%)',
+              border: '1px solid rgba(34, 197, 94, 0.3)',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}>
+              <Mail style={{ width: '40px', height: '40px', color: '#22c55e', marginBottom: '1rem' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
+                Enquiries
+              </h3>
+              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
+                Manage partnership enquiries
               </p>
             </div>
           </Link>
