@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Global Education Council | Study Abroad & University Partnerships',
   description: 'Global Education Council (GEC) connects Indian students with world-class European and overseas universities. Expert B2B partnership intermediary for international education.',
-  keywords: ['study abroad', 'university partnerships', 'Indian students', 'international education', 'GEC', 'Global Education Council', 'B2B education'],
+  keywords: ['gecouncil', 'global education', 'study abroad', 'g e council', 'global education council', 'university partnerships', 'Indian students', 'international education', 'GEC', 'B2B education'],
   authors: [{ name: 'Global Education Council' }],
   metadataBase: new URL('https://gecouncil.com'),
   alternates: {
