@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     unoptimized: false,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: ['lucide-react'],
   },
 };
 
