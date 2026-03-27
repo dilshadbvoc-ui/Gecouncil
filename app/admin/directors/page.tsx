@@ -34,7 +34,7 @@ export default function DirectorsManagement() {
     try {
       const response = await fetch('/api/directors');
       const data = await response.json();
-      setDirectors(data);
+      setDirectors(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Failed to fetch directors:', error);
     } finally {

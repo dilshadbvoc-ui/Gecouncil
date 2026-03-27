@@ -34,7 +34,7 @@ export default function GalleriesManagement() {
     try {
       const response = await fetch('/api/galleries');
       const data = await response.json();
-      setGalleries(data);
+      setGalleries(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Failed to fetch galleries:', error);
     } finally {

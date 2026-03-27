@@ -25,7 +25,7 @@ export default function EnquiriesManagement() {
     try {
       const response = await fetch('/api/enquiries');
       const data = await response.json();
-      setEnquiries(data);
+      setEnquiries(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Failed to fetch enquiries:', error);
     } finally {

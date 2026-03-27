@@ -25,7 +25,7 @@ export default function AdminUniversitiesPage() {
     try {
       const response = await fetch('/api/universities');
       const data = await response.json();
-      setUniversities(data);
+      setUniversities(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Failed to fetch universities:', error);
     } finally {
