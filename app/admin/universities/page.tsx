@@ -52,64 +52,27 @@ export default function AdminUniversitiesPage() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000000', color: '#F8F9FA' }}>
-      {/* Header */}
-      <header style={{
-        background: 'rgba(0, 0, 0, 0.9)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
-        padding: '1rem 2rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link href="/admin/dashboard">
-            <button style={{
-              padding: '0.5rem',
-              borderRadius: '8px',
-              background: 'rgba(212, 175, 55, 0.1)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              color: '#D4AF37',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center'
-            }}>
+            <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
               <ArrowLeft size={20} />
             </button>
           </Link>
-          <h1 style={{
-            fontSize: '1.5rem',
-            fontWeight: '700',
-            color: '#D4AF37',
-            fontFamily: 'Playfair Display, serif'
-          }}>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>
             Manage Universities
           </h1>
         </div>
         <Link href="/admin/universities/new">
-          <button style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-            border: 'none',
-            color: '#000000',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}>
+          <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '8px', background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000000', fontWeight: '600', cursor: 'pointer' }}>
             <Plus size={18} />
             Add University
           </button>
         </Link>
-      </header>
+      </div>
 
-      <div style={{ padding: '2rem' }}>
-        {/* Search Bar */}
-        <div style={{ marginBottom: '2rem', maxWidth: '500px' }}>
+      <div style={{ marginBottom: '2rem', maxWidth: '500px' }}>
           <div style={{ position: 'relative' }}>
             <Search style={{
               position: 'absolute',
@@ -256,7 +219,6 @@ export default function AdminUniversitiesPage() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

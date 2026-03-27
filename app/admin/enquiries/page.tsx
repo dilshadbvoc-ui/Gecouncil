@@ -76,51 +76,21 @@ export default function EnquiriesManagement() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000000', color: '#F8F9FA' }}>
-      <header style={{
-        background: 'rgba(0, 0, 0, 0.9)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
-        padding: '1rem 2rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem'
-      }}>
+    <div style={{ color: '#F8F9FA' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <Link href="/admin/dashboard">
-          <button style={{
-            padding: '0.5rem',
-            borderRadius: '8px',
-            background: 'rgba(212, 175, 55, 0.1)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
-            color: '#D4AF37',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center'
-          }}>
+          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={20} />
           </button>
         </Link>
-        <h1 style={{
-          fontSize: '1.5rem',
-          fontWeight: '700',
-          color: '#D4AF37',
-          fontFamily: 'Playfair Display, serif',
-          flex: 1
-        }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', flex: 1 }}>
           Partnership Enquiries
         </h1>
-        <div style={{
-          padding: '0.5rem 1rem',
-          borderRadius: '8px',
-          background: 'rgba(212, 175, 55, 0.1)',
-          border: '1px solid rgba(212, 175, 55, 0.3)',
-          color: '#D4AF37',
-          fontWeight: '600'
-        }}>
+        <div style={{ padding: '0.5rem 1rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', fontWeight: '600' }}>
           {enquiries.length} Total
         </div>
-      </header>
-
-      <div style={{ padding: '2rem', display: 'grid', gridTemplateColumns: selectedEnquiry ? '1fr 400px' : '1fr', gap: '2rem' }}>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: selectedEnquiry ? '1fr 400px' : '1fr', gap: '2rem' }}>
         {/* Enquiries List */}
         <div>
           {enquiries.length === 0 ? (
@@ -344,3 +314,5 @@ export default function EnquiriesManagement() {
     </div>
   );
 }
+
+// layout fix applied

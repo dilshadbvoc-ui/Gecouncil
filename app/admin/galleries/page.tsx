@@ -100,63 +100,24 @@ export default function GalleriesManagement() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000000', color: '#F8F9FA' }}>
-      <header style={{
-        background: 'rgba(0, 0, 0, 0.9)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
-        padding: '1rem 2rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem'
-      }}>
+    <div style={{ color: '#F8F9FA' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <Link href="/admin/dashboard">
-          <button style={{
-            padding: '0.5rem',
-            borderRadius: '8px',
-            background: 'rgba(212, 175, 55, 0.1)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
-            color: '#D4AF37',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center'
-          }}>
+          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={20} />
           </button>
         </Link>
-        <h1 style={{
-          fontSize: '1.5rem',
-          fontWeight: '700',
-          color: '#D4AF37',
-          fontFamily: 'Playfair Display, serif',
-          flex: 1
-        }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', flex: 1 }}>
           Page Galleries
         </h1>
         <button
-          onClick={() => {
-            setShowForm(true);
-            setEditingId(null);
-            setFormData({ page: 'universities', title: '', description: '', image: '', order: 1 });
-          }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.75rem 1.5rem',
-            borderRadius: '8px',
-            background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-            border: 'none',
-            color: '#000000',
-            fontWeight: '600',
-            cursor: 'pointer'
-          }}
+          onClick={() => { setShowForm(true); setEditingId(null); setFormData({ page: 'universities', title: '', description: '', image: '', order: 1 }); }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '8px', background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000000', fontWeight: '600', cursor: 'pointer' }}
         >
           <Plus size={18} />
           Add Gallery Item
         </button>
-      </header>
-
-      <div style={{ padding: '2rem' }}>
+      </div>
         {showForm && (
           <div style={{
             marginBottom: '2rem',
@@ -242,7 +203,7 @@ export default function GalleriesManagement() {
                   Image URL *
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   value={formData.image}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                   required
@@ -406,7 +367,6 @@ export default function GalleriesManagement() {
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 }
