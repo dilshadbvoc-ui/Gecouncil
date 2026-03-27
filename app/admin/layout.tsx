@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
-  LayoutDashboard, Building2, Users, Image, Mail,
+  LayoutDashboard, Building2, Users, ImageIcon, Mail,
   LogOut, Menu, X, Globe, Briefcase, BookOpen, Phone, Info
 } from 'lucide-react';
 
@@ -13,7 +13,7 @@ const navItems = [
   { href: '/admin/universities', label: 'Universities', icon: Building2 },
   { href: '/admin/programs', label: 'Programs', icon: BookOpen },
   { href: '/admin/directors', label: 'Directors', icon: Users },
-  { href: '/admin/galleries', label: 'Galleries', icon: Image },
+  { href: '/admin/galleries', label: 'Galleries', icon: ImageIcon },
   { href: '/admin/enquiries', label: 'Enquiries', icon: Mail },
   { href: '/admin/pages/home', label: 'Home Page', icon: Globe },
   { href: '/admin/pages/skill', label: 'Skill Page', icon: BookOpen },
