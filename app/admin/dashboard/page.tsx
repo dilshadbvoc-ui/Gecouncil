@@ -1,284 +1,104 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Building2, Users, LogOut, Plus, Edit, Trash2, Mail } from 'lucide-react';
-import { University } from '@/types/admin';
+import {
+  Building2, Users, Image, Mail, Globe,
+  BookOpen, Briefcase, Info, Phone, ArrowRight, Plus
+} from 'lucide-react';
+
+interface Stats { universities: number; directors: number; galleries: number; enquiries: number; newEnquiries: number; }
+
+const sections = [
+  { href: '/admin/universities', label: 'Universities', icon: Building2, color: '#60a5fa', desc: 'Add, edit, delete university listings' },
+  { href: '/admin/directors', label: 'Directors', icon: Users, color: '#D4AF37', desc: 'Manage board of directors' },
+  { href: '/admin/galleries', label: 'Galleries', icon: Image, color: '#a855f7', desc: 'Page image galleries' },
+  { href: '/admin/enquiries', label: 'Enquiries', icon: Mail, color: '#22c55e', desc: 'Partnership enquiries' },
+  { href: '/admin/pages/home', label: 'Home Page', icon: Globe, color: '#f97316', desc: 'Edit hero, stats, content' },
+  { href: '/admin/pages/skill', label: 'Skill Page', icon: BookOpen, color: '#06b6d4', desc: 'Edit skill page content' },
+  { href: '/admin/pages/overseas', label: 'Overseas Page', icon: Globe, color: '#8b5cf6', desc: 'Edit overseas page content' },
+  { href: '/admin/pages/recruitment', label: 'Recruitment Page', icon: Briefcase, color: '#ec4899', desc: 'Edit recruitment content' },
+  { href: '/admin/pages/about', label: 'About Page', icon: Info, color: '#14b8a6', desc: 'Edit about page content' },
+  { href: '/admin/pages/contact', label: 'Contact Page', icon: Phone, color: '#f59e0b', desc: 'Edit contact info' },
+];
 
 export default function AdminDashboard() {
-  const router = useRouter();
-  const [universities, setUniversities] = useState<University[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState<Stats>({ universities: 0, directors: 0, galleries: 0, enquiries: 0, newEnquiries: 0 });
 
   useEffect(() => {
-    const auth = localStorage.getItem('adminAuth');
-    if (!auth) {
-      router.push('/admin/login');
-      return;
-    }
-    fetchUniversities();
-  }, [router]);
+    Promise.all([
+      fetch('/api/universities').then(r => r.json()),
+      fetch('/api/directors').then(r => r.json()),
+      fetch('/api/galleries').then(r => r.json()),
+      fetch('/api/enquiries').then(r => r.json()),
+    ]).then(([unis, dirs, gals, enqs]) => {
+      setStats({
+        universities: Array.isArray(unis) ? unis.length : 0,
+        directors: Array.isArray(dirs) ? dirs.length : 0,
+        galleries: Array.isArray(gals) ? gals.length : 0,
+        enquiries: Array.isArray(enqs) ? enqs.length : 0,
+        newEnquiries: Array.isArray(enqs) ? enqs.filter((e: { status: string }) => e.status === 'new').length : 0,
+      });
+    }).catch(() => {});
+  }, []);
 
-  const fetchUniversities = async () => {
-    try {
-      const response = await fetch('/api/universities');
-      const data = await response.json();
-      setUniversities(data);
-    } catch (error) {
-      console.error('Failed to fetch universities:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('adminAuth');
-    router.push('/admin/login');
-  };
-
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this university?')) return;
-
-    try {
-      await fetch(`/api/universities/${id}`, { method: 'DELETE' });
-      fetchUniversities();
-    } catch (error) {
-      console.error('Failed to delete university:', error);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        background: '#000000',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#D4AF37'
-      }}>
-        Loading...
-      </div>
-    );
-  }
+  const statCards = [
+    { label: 'Universities', value: stats.universities, color: '#60a5fa' },
+    { label: 'Directors', value: stats.directors, color: '#D4AF37' },
+    { label: 'Galleries', value: stats.galleries, color: '#a855f7' },
+    { label: 'New Enquiries', value: stats.newEnquiries, color: '#22c55e' },
+  ];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000000', color: '#F8F9FA' }}>
-      {/* Header */}
-      <header style={{
-        background: 'rgba(0, 0, 0, 0.9)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
-        padding: '1rem 2rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <h1 style={{
-          fontSize: '1.5rem',
-          fontWeight: '700',
-          color: '#D4AF37',
-          fontFamily: 'Playfair Display, serif'
-        }}>
-          Admin Dashboard
+    <div>
+      <div style={{ marginBottom: '2rem' }}>
+        <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', marginBottom: '0.5rem' }}>
+          Welcome back
         </h1>
-        <button
-          onClick={handleLogout}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 1rem',
-            borderRadius: '8px',
-            background: 'rgba(239, 68, 68, 0.1)',
-            border: '1px solid rgba(239, 68, 68, 0.3)',
-            color: '#ef4444',
-            cursor: 'pointer'
-          }}
-        >
-          <LogOut size={18} />
-          Logout
-        </button>
-      </header>
+        <p style={{ color: 'rgba(248,249,250,0.5)', fontSize: '0.9rem' }}>Manage all content for the Global Education Council website.</p>
+      </div>
 
-      <div style={{ padding: '2rem' }}>
-        {/* Navigation Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '3rem'
-        }}>
-          <Link href="/admin/universities" style={{ textDecoration: 'none' }}>
-            <div style={{
-              padding: '2rem',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%)',
-              border: '1px solid rgba(96, 165, 250, 0.3)',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}>
-              <Building2 style={{ width: '40px', height: '40px', color: '#60a5fa', marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
-                Universities
-              </h3>
-              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
-                Manage university listings
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/admin/directors" style={{ textDecoration: 'none' }}>
-            <div style={{
-              padding: '2rem',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}>
-              <Users style={{ width: '40px', height: '40px', color: '#D4AF37', marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
-                Directors
-              </h3>
-              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
-                Manage board of directors
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/admin/galleries" style={{ textDecoration: 'none' }}>
-            <div style={{
-              padding: '2rem',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%)',
-              border: '1px solid rgba(168, 85, 247, 0.3)',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}>
-              <Building2 style={{ width: '40px', height: '40px', color: '#a855f7', marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
-                Page Galleries
-              </h3>
-              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
-                Manage page image galleries
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/admin/enquiries" style={{ textDecoration: 'none' }}>
-            <div style={{
-              padding: '2rem',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%)',
-              border: '1px solid rgba(34, 197, 94, 0.3)',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}>
-              <Mail style={{ width: '40px', height: '40px', color: '#22c55e', marginBottom: '1rem' }} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
-                Enquiries
-              </h3>
-              <p style={{ color: 'rgba(248, 249, 250, 0.7)', fontSize: '0.875rem' }}>
-                Manage partnership enquiries
-              </p>
-            </div>
-          </Link>
-        </div>
-
-        {/* Quick View - Universities */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: '16px',
-          border: '1px solid rgba(212, 175, 55, 0.3)',
-          padding: '2rem'
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '1.5rem'
-          }}>
-            <h2 style={{
-              fontSize: '1.5rem',
-              fontWeight: '700',
-              color: '#D4AF37',
-              fontFamily: 'Playfair Display, serif'
-            }}>
-              Recent Universities
-            </h2>
-            <Link href="/admin/universities/new">
-              <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-                border: 'none',
-                color: '#000000',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}>
-                <Plus size={18} />
-                Add University
-              </button>
-            </Link>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
+        {statCards.map(s => (
+          <div key={s.label} style={{ padding: '1.5rem', borderRadius: '14px', background: 'rgba(255,255,255,0.04)', border: `1px solid ${s.color}33` }}>
+            <div style={{ fontSize: '2rem', fontWeight: '700', color: s.color, fontFamily: 'Playfair Display, serif' }}>{s.value}</div>
+            <div style={{ fontSize: '0.8125rem', color: 'rgba(248,249,250,0.5)', marginTop: '0.25rem' }}>{s.label}</div>
           </div>
+        ))}
+      </div>
 
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                  <th style={{ padding: '1rem', textAlign: 'left', color: '#D4AF37', fontWeight: '600' }}>Name</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', color: '#D4AF37', fontWeight: '600' }}>Country</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', color: '#D4AF37', fontWeight: '600' }}>Programs</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', color: '#D4AF37', fontWeight: '600' }}>Rating</th>
-                  <th style={{ padding: '1rem', textAlign: 'right', color: '#D4AF37', fontWeight: '600' }}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {universities.map((uni) => (
-                  <tr key={uni.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                    <td style={{ padding: '1rem', color: '#F8F9FA' }}>{uni.name}</td>
-                    <td style={{ padding: '1rem', color: 'rgba(248, 249, 250, 0.7)' }}>{uni.country}</td>
-                    <td style={{ padding: '1rem', color: 'rgba(248, 249, 250, 0.7)' }}>{uni.programs}</td>
-                    <td style={{ padding: '1rem', color: 'rgba(248, 249, 250, 0.7)' }}>{uni.rating}</td>
-                    <td style={{ padding: '1rem', textAlign: 'right' }}>
-                      <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                        <Link href={`/admin/universities/${uni.id}`}>
-                          <button style={{
-                            padding: '0.5rem',
-                            borderRadius: '6px',
-                            background: 'rgba(96, 165, 250, 0.1)',
-                            border: '1px solid rgba(96, 165, 250, 0.3)',
-                            color: '#60a5fa',
-                            cursor: 'pointer'
-                          }}>
-                            <Edit size={16} />
-                          </button>
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(uni.id)}
-                          style={{
-                            padding: '0.5rem',
-                            borderRadius: '6px',
-                            background: 'rgba(239, 68, 68, 0.1)',
-                            border: '1px solid rgba(239, 68, 68, 0.3)',
-                            color: '#ef4444',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <h2 style={{ fontSize: '1rem', fontWeight: '600', color: 'rgba(248,249,250,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>
+        Manage Content
+      </h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1rem' }}>
+        {sections.map(({ href, label, icon: Icon, color, desc }) => (
+          <Link key={href} href={href} style={{ textDecoration: 'none' }}>
+            <div style={{ padding: '1.5rem', borderRadius: '14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', cursor: 'pointer', transition: 'all 0.2s', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: color + '1a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon size={20} style={{ color }} />
+                </div>
+                <ArrowRight size={16} style={{ color: 'rgba(248,249,250,0.3)' }} />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.9375rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.25rem' }}>{label}</div>
+                <div style={{ fontSize: '0.8125rem', color: 'rgba(248,249,250,0.45)' }}>{desc}</div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <div style={{ marginTop: '2.5rem', padding: '1.5rem', borderRadius: '14px', background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+        <div>
+          <div style={{ fontSize: '1rem', fontWeight: '600', color: '#D4AF37' }}>Add a new university</div>
+          <div style={{ fontSize: '0.8125rem', color: 'rgba(248,249,250,0.5)' }}>Quickly add a new partner university to the listings</div>
         </div>
+        <Link href="/admin/universities/new">
+          <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '10px', background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000', fontWeight: '600', cursor: 'pointer', fontSize: '0.875rem' }}>
+            <Plus size={16} /> Add University
+          </button>
+        </Link>
       </div>
     </div>
   );
