@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save } from 'lucide-react';
+import ImageUpload from '@/components/ImageUpload';
 
 export default function NewUniversityPage() {
   const router = useRouter();
@@ -114,7 +115,9 @@ export default function NewUniversityPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div><label style={{ ...lbl, fontSize: '0.75rem' }}>Name *</label><input type="text" value={person.name} onChange={e => updateKeyPerson(index, 'name', e.target.value)} required style={{ ...inp, padding: '0.75rem', fontSize: '0.875rem' }} /></div>
                     <div><label style={{ ...lbl, fontSize: '0.75rem' }}>Position *</label><input type="text" value={person.position} onChange={e => updateKeyPerson(index, 'position', e.target.value)} required style={{ ...inp, padding: '0.75rem', fontSize: '0.875rem' }} /></div>
-                    <div style={{ gridColumn: '1 / -1' }}><label style={{ ...lbl, fontSize: '0.75rem' }}>Image URL</label><input type="text" value={person.image} onChange={e => updateKeyPerson(index, 'image', e.target.value)} placeholder="/images/person.jpg" style={{ ...inp, padding: '0.75rem', fontSize: '0.875rem' }} /></div>
+                    <div style={{ gridColumn: '1 / -1' }}>
+                      <ImageUpload label="Photo" value={person.image} onChange={(url) => updateKeyPerson(index, 'image', url)} />
+                    </div>
                     <div style={{ gridColumn: '1 / -1' }}><label style={{ ...lbl, fontSize: '0.75rem' }}>Bio</label><textarea value={person.bio} onChange={e => updateKeyPerson(index, 'bio', e.target.value)} rows={2} style={{ ...inp, padding: '0.75rem', fontSize: '0.875rem', resize: 'vertical', fontFamily: 'Inter, sans-serif' }} /></div>
                   </div>
                 </div>

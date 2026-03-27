@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Plus, Edit, Trash2, Users } from 'lucide-react';
 import { Director } from '@/types/admin';
+import ImageUpload from '@/components/ImageUpload';
 
 export default function DirectorsManagement() {
   const router = useRouter();
@@ -178,24 +179,10 @@ export default function DirectorsManagement() {
               </div>
 
               <div>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', color: 'rgba(248, 249, 250, 0.7)' }}>
-                  Image URL *
-                </label>
-                <input
-                  type="text"
+                <ImageUpload
+                  label="Photo"
                   value={formData.image}
-                  onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  required
-                  placeholder="/images/directors/photo.jpg"
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    color: '#F8F9FA',
-                    outline: 'none'
-                  }}
+                  onChange={(url) => setFormData({ ...formData, image: url })}
                 />
               </div>
 

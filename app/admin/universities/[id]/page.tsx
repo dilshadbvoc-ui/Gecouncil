@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Save } from 'lucide-react';
 import { University } from '@/types/admin';
+import ImageUpload from '@/components/ImageUpload';
 
 export default function EditUniversityPage() {
   const router = useRouter();
@@ -631,30 +632,10 @@ export default function EditUniversityPage() {
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{
-                        display: 'block',
-                        marginBottom: '0.5rem',
-                        fontSize: '0.75rem',
-                        fontWeight: '500',
-                        color: 'rgba(248, 249, 250, 0.6)'
-                      }}>
-                        Image URL
-                      </label>
-                      <input
-                        type="text"
+                      <ImageUpload
+                        label="Photo"
                         value={person.image}
-                        onChange={(e) => updateKeyPerson(index, 'image', e.target.value)}
-                        placeholder="/images/person.jpg"
-                        style={{
-                          width: '100%',
-                          padding: '0.75rem',
-                          borderRadius: '8px',
-                          border: '1px solid rgba(212, 175, 55, 0.2)',
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          color: '#F8F9FA',
-                          fontSize: '0.875rem',
-                          outline: 'none'
-                        }}
+                        onChange={(url) => updateKeyPerson(index, 'image', url)}
                       />
                     </div>
 
