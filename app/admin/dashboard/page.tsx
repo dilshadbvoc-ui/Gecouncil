@@ -9,17 +9,18 @@ import {
 
 interface Stats { universities: number; directors: number; galleries: number; enquiries: number; newEnquiries: number; }
 
-const sections = [
-  { href: '/admin/universities', label: 'Universities', icon: Building2, color: '#60a5fa', desc: 'Add, edit, delete university listings' },
-  { href: '/admin/directors', label: 'Directors', icon: Users, color: '#D4AF37', desc: 'Manage board of directors' },
-  { href: '/admin/galleries', label: 'Galleries', icon: Image, color: '#a855f7', desc: 'Page image galleries' },
-  { href: '/admin/enquiries', label: 'Enquiries', icon: Mail, color: '#22c55e', desc: 'Partnership enquiries' },
-  { href: '/admin/pages/home', label: 'Home Page', icon: Globe, color: '#f97316', desc: 'Edit hero, stats, content' },
-  { href: '/admin/pages/skill', label: 'Skill Page', icon: BookOpen, color: '#06b6d4', desc: 'Edit skill page content' },
-  { href: '/admin/pages/overseas', label: 'Overseas Page', icon: Globe, color: '#8b5cf6', desc: 'Edit overseas page content' },
-  { href: '/admin/pages/recruitment', label: 'Recruitment Page', icon: Briefcase, color: '#ec4899', desc: 'Edit recruitment content' },
-  { href: '/admin/pages/about', label: 'About Page', icon: Info, color: '#14b8a6', desc: 'Edit about page content' },
-  { href: '/admin/pages/contact', label: 'Contact Page', icon: Phone, color: '#f59e0b', desc: 'Edit contact info' },
+const sections: { href: string; label: string; color: string; desc: string; Icon: React.ComponentType<{ size?: number; color?: string }> }[] = [
+  { href: '/admin/universities', label: 'Universities', color: '#60a5fa', desc: 'Add, edit, delete university listings', Icon: Building2 },
+  { href: '/admin/programs', label: 'Programs', color: '#06b6d4', desc: 'Manage skill & overseas programs', Icon: BookOpen },
+  { href: '/admin/directors', label: 'Directors', color: '#D4AF37', desc: 'Manage board of directors', Icon: Users },
+  { href: '/admin/galleries', label: 'Galleries', color: '#a855f7', desc: 'Page image galleries', Icon: Image },
+  { href: '/admin/enquiries', label: 'Enquiries', color: '#22c55e', desc: 'Partnership enquiries', Icon: Mail },
+  { href: '/admin/pages/home', label: 'Home Page', color: '#f97316', desc: 'Edit hero, stats, content', Icon: Globe },
+  { href: '/admin/pages/skill', label: 'Skill Page', color: '#06b6d4', desc: 'Edit skill page content', Icon: BookOpen },
+  { href: '/admin/pages/overseas', label: 'Overseas Page', color: '#8b5cf6', desc: 'Edit overseas page content', Icon: Globe },
+  { href: '/admin/pages/recruitment', label: 'Recruitment Page', color: '#ec4899', desc: 'Edit recruitment content', Icon: Briefcase },
+  { href: '/admin/pages/about', label: 'About Page', color: '#14b8a6', desc: 'Edit about page content', Icon: Info },
+  { href: '/admin/pages/contact', label: 'Contact Page', color: '#f59e0b', desc: 'Edit contact info', Icon: Phone },
 ];
 
 export default function AdminDashboard() {
