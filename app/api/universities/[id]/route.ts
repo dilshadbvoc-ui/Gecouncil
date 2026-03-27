@@ -7,10 +7,8 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const university = getUniversityById(id);
-    if (!university) {
-      return NextResponse.json({ error: 'University not found' }, { status: 404 });
-    }
+    const university = await getUniversityById(id);
+    if (!university) return NextResponse.json({ error: 'University not found' }, { status: 404 });
     return NextResponse.json(university);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch university' }, { status: 500 });
@@ -24,10 +22,8 @@ export async function PUT(
   try {
     const { id } = await params;
     const data = await request.json();
-    const updated = updateUniversity(id, data);
-    if (!updated) {
-      return NextResponse.json({ error: 'University not found' }, { status: 404 });
-    }
+    const updated = await updateUniversity(id, data);
+    if (!updated) return NextResponse.json({ error: 'University not found' }, { status: 404 });
     return NextResponse.json(updated);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update university' }, { status: 500 });
@@ -40,10 +36,8 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const success = deleteUniversity(id);
-    if (!success) {
-      return NextResponse.json({ error: 'University not found' }, { status: 404 });
-    }
+    const success = await deleteUniversity(id);
+    if (!success) return NextResponse.json({ error: 'University not found' }, { status: 404 });
     return NextResponse.json({ message: 'University deleted successfully' });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to delete university' }, { status: 500 });

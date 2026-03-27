@@ -1,43 +1,33 @@
-// Database configuration
-// TODO: Add your database setup here
+import { MongoClient, Db } from 'mongodb';
 
-// Example with Prisma:
-// import { PrismaClient } from '@prisma/client'
-// 
-// const globalForPrisma = globalThis as unknown as {
-//   prisma: PrismaClient | undefined
-// }
-// 
-// export const prisma = globalForPrisma.prisma ?? new PrismaClient()
-// 
-// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+const uri = process.env.MONGODB_URI!;
 
-// Example with MongoDB:
-// import { MongoClient } from 'mongodb'
-// 
-// const uri = process.env.MONGODB_URI
-// const options = {}
-// 
-// let client
-// let clientPromise: Promise<MongoClient>
-// 
-// if (!uri) {
-//   throw new Error('Please add your Mongo URI to .env.local')
-// }
-// 
-// if (process.env.NODE_ENV === 'development') {
-//   if (!global._mongoClientPromise) {
-//     client = new MongoClient(uri, options)
-//     global._mongoClientPromise = client.connect()
-//   }
-//   clientPromise = global._mongoClientPromise
-// } else {
-//   client = new MongoClient(uri, options)
-//   clientPromise = client.connect()
-// }
-// 
-// export default clientPromise
+if (!uri) {
+  throw new Error('Please add MONGODB_URI to .env.local');
+}
 
-export const db = {
-  // Add your database methods here
-};
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
+
+declare global {
+  // eslint-disable-next-line no-var
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
+
+if (process.env.NODE_ENV === 'development') {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(uri);
+  clientPromise = client.connect();
+}
+
+export async function getDb(): Promise<Db> {
+  const c = await clientPromise;
+  return c.db('gec');
+}
+
+export default clientPromise;
