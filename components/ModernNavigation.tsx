@@ -99,28 +99,30 @@ export default function ModernNavigation() {
           gap: '0.75rem',
           alignItems: 'center'
         }} className="desktop-nav">
-          <button style={{
-            padding: '0.625rem 1.5rem',
-            borderRadius: '8px',
-            border: '1.5px solid #D4AF37',
-            backgroundColor: 'transparent',
-            color: '#D4AF37',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            letterSpacing: '0.01em'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#D4AF37';
-            e.currentTarget.style.color = '#000000';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = '#D4AF37';
-          }}>
-            For Universities
-          </button>
+          <Link href="/admin/login" style={{ textDecoration: 'none' }}>
+            <button style={{
+              padding: '0.625rem 1.5rem',
+              borderRadius: '8px',
+              border: '1.5px solid #D4AF37',
+              backgroundColor: 'transparent',
+              color: '#D4AF37',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              letterSpacing: '0.01em'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#D4AF37';
+              e.currentTarget.style.color = '#000000';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#D4AF37';
+            }}>
+              For Universities
+            </button>
+          </Link>
           <button style={{
             padding: '0.625rem 1.5rem',
             borderRadius: '8px',
@@ -196,18 +198,21 @@ export default function ModernNavigation() {
               Contact
             </MobileNavLink>
             <div style={{ paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <button style={{
-                padding: '0.75rem',
-                borderRadius: '8px',
-                border: '1.5px solid #D4AF37',
-                backgroundColor: 'transparent',
-                color: '#D4AF37',
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}>
-                For Universities
-              </button>
+              <Link href="/admin/login" style={{ textDecoration: 'none' }}>
+                <button style={{
+                  padding: '0.75rem',
+                  borderRadius: '8px',
+                  border: '1.5px solid #D4AF37',
+                  backgroundColor: 'transparent',
+                  color: '#D4AF37',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  width: '100%'
+                }}>
+                  For Universities
+                </button>
+              </Link>
               <button style={{
                 padding: '0.75rem',
                 borderRadius: '8px',
