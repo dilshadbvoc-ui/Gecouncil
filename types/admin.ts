@@ -15,8 +15,24 @@ export interface University {
   keyPersons?: KeyPerson[];
   gallery?: string[];
   details?: string;
+  category?: 'skill' | 'overseas' | 'both';
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface Program {
+  id: string;
+  universityId: string;
+  universityName?: string;
+  title: string;
+  degree: string;
+  duration: string;
+  language: string;
+  description: string;
+  category: 'skill' | 'overseas' | 'both';
+  tuitionFee?: string;
+  intake?: string;
+  createdAt?: Date;
 }
 
 export interface KeyPerson {

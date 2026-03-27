@@ -11,6 +11,7 @@ import {
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/universities', label: 'Universities', icon: Building2 },
+  { href: '/admin/programs', label: 'Programs', icon: BookOpen },
   { href: '/admin/directors', label: 'Directors', icon: Users },
   { href: '/admin/galleries', label: 'Galleries', icon: Image },
   { href: '/admin/enquiries', label: 'Enquiries', icon: Mail },

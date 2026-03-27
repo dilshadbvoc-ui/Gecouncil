@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getDb } from './db';
-import { University, Director, PageGallery, Enquiry } from '@/types/admin';
+import { University, Director, PageGallery, Enquiry, Program } from '@/types/admin';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -164,5 +164,49 @@ export async function updateEnquiry(id: string, data: Partial<Enquiry>): Promise
 export async function deleteEnquiry(id: string): Promise<boolean> {
   const db = await getDb();
   const result = await db.collection('enquiries').deleteOne({ _id: new ObjectId(id) });
+  return result.deletedCount === 1;
+}
+
+// ─── Programs ────────────────────────────────────────────────────────────────
+
+export async function getPrograms(filter?: { category?: string; universityId?: string }): Promise<Program[]> {
+  const db = await getDb();
+  const query: Record<string, unknown> = {};
+  if (filter?.category) {
+    (query as Record<string, unknown>)['$or'] = [{ category: filter.category }, { category: 'both' }];
+  }
+  if (filter?.universityId) query.universityId = filter.universityId;
+  const docs = await db.collection('programs').find(query).sort({ createdAt: -1 }).toArray();
+  return docs.map(d => toId(d as Record<string, unknown>)) as Program[];
+}
+
+export async function getProgramById(id: string): Promise<Program | null> {
+  const db = await getDb();
+  const doc = await db.collection('programs').findOne({ _id: new ObjectId(id) });
+  if (!doc) return null;
+  return toId(doc as Record<string, unknown>) as Program;
+}
+
+export async function createProgram(data: Omit<Program, 'id' | 'createdAt'>): Promise<Program> {
+  const db = await getDb();
+  const doc = { ...data, createdAt: new Date() };
+  const result = await db.collection('programs').insertOne(doc);
+  return { id: result.insertedId.toString(), ...doc } as Program;
+}
+
+export async function updateProgram(id: string, data: Partial<Program>): Promise<Program | null> {
+  const db = await getDb();
+  const result = await db.collection('programs').findOneAndUpdate(
+    { _id: new ObjectId(id) },
+    { $set: data },
+    { returnDocument: 'after' }
+  );
+  if (!result) return null;
+  return toId(result as Record<string, unknown>) as Program;
+}
+
+export async function deleteProgram(id: string): Promise<boolean> {
+  const db = await getDb();
+  const result = await db.collection('programs').deleteOne({ _id: new ObjectId(id) });
   return result.deletedCount === 1;
 }
