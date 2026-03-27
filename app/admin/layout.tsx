@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
   LayoutDashboard, Building2, Users, ImageIcon, Mail,
-  LogOut, Menu, X, Globe, Briefcase, BookOpen, Phone, Info
+  LogOut, Menu, X, Globe, Briefcase, BookOpen, Phone, Info, Settings
 } from 'lucide-react';
 
 const navItems = [
@@ -21,6 +21,7 @@ const navItems = [
   { href: '/admin/pages/recruitment', label: 'Recruitment Page', icon: Briefcase },
   { href: '/admin/pages/about', label: 'About Page', icon: Info },
   { href: '/admin/pages/contact', label: 'Contact Page', icon: Phone },
+  { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
