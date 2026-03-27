@@ -1,4 +1,4 @@
-import { MongoClient, Db } from 'mongodb';
+import { MongoClient, Db, MongoClientOptions } from 'mongodb';
 
 const uri = process.env.MONGODB_URI!;
 
@@ -6,28 +6,35 @@ if (!uri) {
   throw new Error('Please add MONGODB_URI to .env.local');
 }
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+const options: MongoClientOptions = {
+  maxPoolSize: 10,
+  minPoolSize: 2,
+  serverSelectionTimeoutMS: 5000,
+  connectTimeoutMS: 10000,
+  socketTimeoutMS: 45000,
+};
 
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
+let clientPromise: Promise<MongoClient>;
+
 if (process.env.NODE_ENV === 'development') {
+  // Reuse connection across hot reloads in dev
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri);
-    global._mongoClientPromise = client.connect();
+    global._mongoClientPromise = new MongoClient(uri, options).connect();
   }
   clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
+  // In production, reuse at module level (serverless warm instances)
+  clientPromise = new MongoClient(uri, options).connect();
 }
 
 export async function getDb(): Promise<Db> {
-  const c = await clientPromise;
-  return c.db('gec');
+  const client = await clientPromise;
+  return client.db('gec');
 }
 
 export default clientPromise;

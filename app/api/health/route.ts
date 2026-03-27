@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
+import { getDb } from '@/lib/db';
 
 export async function GET() {
-  return NextResponse.json(
-    {
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      environment: process.env.NODE_ENV,
-    },
-    { status: 200 }
-  );
+  try {
+    const db = await getDb();
+    await db.command({ ping: 1 });
+    return NextResponse.json({ status: 'ok', db: 'connected' });
+  } catch (error) {
+    return NextResponse.json({ status: 'error', db: 'disconnected', error: String(error) }, { status: 500 });
+  }
 }

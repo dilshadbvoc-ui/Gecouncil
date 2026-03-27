@@ -3,11 +3,13 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [],
-    unoptimized: false,
+    unoptimized: true, // skip image optimization for faster local dev
   },
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
+  // Remove optimizePackageImports - causes slow dev compilation
+  // Add response compression
+  compress: true,
+  // Reduce unnecessary rewrites
+  poweredByHeader: false,
 };
 
 export default nextConfig;
