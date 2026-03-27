@@ -120,7 +120,7 @@ export default function ModernNavigation() {
               e.currentTarget.style.backgroundColor = 'transparent';
               e.currentTarget.style.color = '#D4AF37';
             }}>
-              For Universities
+              Login
             </button>
           </Link>
           <button style={{
@@ -210,7 +210,7 @@ export default function ModernNavigation() {
                   cursor: 'pointer',
                   width: '100%'
                 }}>
-                  For Universities
+                  Login
                 </button>
               </Link>
               <button style={{
