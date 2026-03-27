@@ -86,8 +86,9 @@ export default function ModernNavigation() {
           alignItems: 'center'
         }} className="desktop-nav">
           <NavLink href="/" active={isActive('/')}>Home</NavLink>
-          <NavLink href="/universities" active={isActive('/universities')}>Universities</NavLink>
-          <NavLink href="/programs" active={isActive('/programs')}>Programs</NavLink>
+          <NavLink href="/skill" active={isActive('/skill')}>Skill</NavLink>
+          <NavLink href="/overseas" active={isActive('/overseas')}>Overseas</NavLink>
+          <NavLink href="/recruitment" active={isActive('/recruitment')}>Recruitment</NavLink>
           <NavLink href="/about" active={isActive('/about')}>About</NavLink>
           <NavLink href="/contact" active={isActive('/contact')}>Contact</NavLink>
         </div>
@@ -179,11 +180,14 @@ export default function ModernNavigation() {
             <MobileNavLink href="/" active={isActive('/')} onClick={() => setIsOpen(false)}>
               Home
             </MobileNavLink>
-            <MobileNavLink href="/universities" active={isActive('/universities')} onClick={() => setIsOpen(false)}>
-              Universities
+            <MobileNavLink href="/skill" active={isActive('/skill')} onClick={() => setIsOpen(false)}>
+              Skill
             </MobileNavLink>
-            <MobileNavLink href="/programs" active={isActive('/programs')} onClick={() => setIsOpen(false)}>
-              Programs
+            <MobileNavLink href="/overseas" active={isActive('/overseas')} onClick={() => setIsOpen(false)}>
+              Overseas
+            </MobileNavLink>
+            <MobileNavLink href="/recruitment" active={isActive('/recruitment')} onClick={() => setIsOpen(false)}>
+              Recruitment
             </MobileNavLink>
             <MobileNavLink href="/about" active={isActive('/about')} onClick={() => setIsOpen(false)}>
               About
