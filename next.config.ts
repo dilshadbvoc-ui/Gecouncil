@@ -2,8 +2,10 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [],
-    unoptimized: true, // skip image optimization for faster local dev
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
+    unoptimized: true,
   },
   // Remove optimizePackageImports - causes slow dev compilation
   // Add response compression

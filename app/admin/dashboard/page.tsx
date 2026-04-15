@@ -2,16 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Building2, Users, ImageIcon, Mail, Globe, BookOpen, Briefcase, Info, Phone, ArrowRight, Plus } from 'lucide-react';
+import { Building2, Users, Image, Mail, Globe, BookOpen, Briefcase, Info, Phone, ArrowRight, Plus } from 'lucide-react';
 
 interface Stats { universities: number; directors: number; galleries: number; newEnquiries: number; }
-type IconType = React.ComponentType<{ size?: number; color?: string }>;
+type Icon = React.ComponentType<{ size?: number; color?: string }>;
 
-const sections: { href: string; label: string; color: string; desc: string; Icon: IconType }[] = [
+const sections: { href: string; label: string; color: string; desc: string; Icon: Icon }[] = [
   { href: '/admin/universities', label: 'Universities', color: '#60a5fa', desc: 'Add, edit, delete university listings', Icon: Building2 },
   { href: '/admin/programs', label: 'Programs', color: '#06b6d4', desc: 'Manage skill & overseas programs', Icon: BookOpen },
-  { href: '/admin/directors', label: 'Directors', color: '#D4AF37', desc: 'Manage board of directors', Icon: Users },
-  { href: '/admin/galleries', label: 'Galleries', color: '#a855f7', desc: 'Page image galleries', Icon: ImageIcon },
+  { href: '/admin/directors', label: 'Directors', color: '#4A90D9', desc: 'Manage board of directors', Icon: Users },
+  { href: '/admin/galleries', label: 'Galleries', color: '#a855f7', desc: 'Page image galleries', Icon: Image },
   { href: '/admin/enquiries', label: 'Enquiries', color: '#22c55e', desc: 'Partnership enquiries', Icon: Mail },
   { href: '/admin/pages/home', label: 'Home Page', color: '#f97316', desc: 'Edit hero, stats, content', Icon: Globe },
   { href: '/admin/pages/skill', label: 'Skill Page', color: '#06b6d4', desc: 'Edit skill page content', Icon: BookOpen },
@@ -25,24 +25,20 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats>({ universities: 0, directors: 0, galleries: 0, newEnquiries: 0 });
 
   useEffect(() => {
-    Promise.all([
-      fetch('/api/universities').then(r => r.json()).catch(() => []),
-      fetch('/api/directors').then(r => r.json()).catch(() => []),
-      fetch('/api/galleries').then(r => r.json()).catch(() => []),
-      fetch('/api/enquiries').then(r => r.json()).catch(() => []),
-    ]).then(([unis, dirs, gals, enqs]) => {
-      setStats({
-        universities: Array.isArray(unis) ? unis.length : 0,
-        directors: Array.isArray(dirs) ? dirs.length : 0,
-        galleries: Array.isArray(gals) ? gals.length : 0,
-        newEnquiries: Array.isArray(enqs) ? enqs.filter((e: { status: string }) => e.status === 'new').length : 0,
-      });
-    });
+    fetch('/api/admin/stats')
+      .then(r => r.json())
+      .then(data => setStats({
+        universities: data.universities || 0,
+        directors: data.directors || 0,
+        galleries: data.galleries || 0,
+        newEnquiries: data.newEnquiries || 0,
+      }))
+      .catch(() => {});
   }, []);
 
   const statCards = [
     { label: 'Universities', value: stats.universities, color: '#60a5fa' },
-    { label: 'Directors', value: stats.directors, color: '#D4AF37' },
+    { label: 'Directors', value: stats.directors, color: '#4A90D9' },
     { label: 'Galleries', value: stats.galleries, color: '#a855f7' },
     { label: 'New Enquiries', value: stats.newEnquiries, color: '#22c55e' },
   ];
@@ -50,7 +46,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', marginBottom: '0.5rem' }}>
+        <h1 style={{ fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif', marginBottom: '0.5rem' }}>
           Welcome back
         </h1>
         <p style={{ color: 'rgba(248,249,250,0.5)', fontSize: '0.9rem' }}>Manage all content for the Global Education Council website.</p>
@@ -87,13 +83,13 @@ export default function AdminDashboard() {
         ))}
       </div>
 
-      <div style={{ marginTop: '2.5rem', padding: '1.5rem', borderRadius: '14px', background: 'rgba(212,175,55,0.05)', border: '1px solid rgba(212,175,55,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+      <div style={{ marginTop: '2.5rem', padding: '1.5rem', borderRadius: '14px', background: 'rgba(74,144,217,0.05)', border: '1px solid rgba(74,144,217,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <div style={{ fontSize: '1rem', fontWeight: '600', color: '#D4AF37' }}>Add a new university</div>
+          <div style={{ fontSize: '1rem', fontWeight: '600', color: '#4A90D9' }}>Add a new university</div>
           <div style={{ fontSize: '0.8125rem', color: 'rgba(248,249,250,0.5)' }}>Quickly add a new partner university to the listings</div>
         </div>
         <Link href="/admin/universities/new">
-          <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '10px', background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000', fontWeight: '600', cursor: 'pointer', fontSize: '0.875rem' }}>
+          <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '10px', background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)', border: 'none', color: '#000', fontWeight: '600', cursor: 'pointer', fontSize: '0.875rem' }}>
             <Plus size={16} /> Add University
           </button>
         </Link>

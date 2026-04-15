@@ -20,11 +20,14 @@ export default function EditUniversityPage() {
     programs: 0,
     rating: 4.5,
     image: '🎓',
+    logo: '',
     description: '',
     website: '',
     established: new Date().getFullYear(),
     students: 0,
     details: '',
+    faculty: [],
+    category: 'both',
     keyPersons: []
   });
 
@@ -123,7 +126,7 @@ export default function EditUniversityPage() {
   };
 
   if (loading) {
-    return <div style={{ color: '#D4AF37', padding: '2rem' }}>Loading...</div>;
+    return <div style={{ color: '#4A90D9', padding: '2rem' }}>Loading...</div>;
   }
 
   return (
@@ -133,9 +136,9 @@ export default function EditUniversityPage() {
           <button style={{
             padding: '0.5rem',
             borderRadius: '8px',
-            background: 'rgba(212, 175, 55, 0.1)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
-            color: '#D4AF37',
+            background: 'rgba(74, 144, 217, 0.1)',
+            border: '1px solid rgba(74, 144, 217, 0.3)',
+            color: '#4A90D9',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center'
@@ -146,7 +149,7 @@ export default function EditUniversityPage() {
         <h1 style={{
           fontSize: '1.5rem',
           fontWeight: '700',
-          color: '#D4AF37',
+          color: '#4A90D9',
           fontFamily: 'Playfair Display, serif'
         }}>
           Edit University
@@ -156,7 +159,7 @@ export default function EditUniversityPage() {
       <form onSubmit={handleSubmit} style={{
         background: 'rgba(255, 255, 255, 0.05)',
         borderRadius: '16px',
-        border: '1px solid rgba(212, 175, 55, 0.3)',
+        border: '1px solid rgba(74, 144, 217, 0.3)',
         padding: '2rem'
       }}>
         {toast && (
@@ -195,7 +198,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -225,7 +228,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -255,7 +258,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -273,19 +276,18 @@ export default function EditUniversityPage() {
               fontWeight: '500',
               color: 'rgba(248, 249, 250, 0.7)'
             }}>
-              Flag Emoji *
+              Flag / Icon Emoji
             </label>
             <input
               type="text"
               name="image"
               value={formData.image}
               onChange={handleChange}
-              required
               style={{
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -294,7 +296,34 @@ export default function EditUniversityPage() {
             />
           </div>
 
-          {/* Programs */}
+          {/* Category */}
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: 'rgba(248,249,250,0.7)' }}>Category</label>
+            <select name="category" value={formData.category || 'both'} onChange={handleChange}
+              style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '12px', border: '1px solid rgba(74,144,217,0.3)', background: 'rgba(10,10,20,0.9)', color: '#F8F9FA', fontSize: '1rem', outline: 'none' }}>
+              <option value="skill">Skill Development</option>
+              <option value="overseas">Overseas / Study Abroad</option>
+              <option value="recruitment">Recruitment</option>
+              <option value="both">Both (Skill + Overseas)</option>
+            </select>
+          </div>
+
+          {/* Logo Upload */}
+          <div style={{ gridColumn: '1 / -1' }}>
+            <ImageUpload label="University Logo (shown in carousel & detail page)" value={formData.logo || ''} onChange={url => setFormData(prev => ({ ...prev, logo: url }))} />
+          </div>
+
+          {/* Faculty */}
+          <div style={{ gridColumn: '1 / -1' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: 'rgba(248,249,250,0.7)' }}>
+              Faculties / Specialisations <span style={{ color: 'rgba(248,249,250,0.4)', fontWeight: '400' }}>(comma-separated)</span>
+            </label>
+            <input type="text"
+              value={(formData.faculty || []).join(', ')}
+              onChange={e => setFormData(prev => ({ ...prev, faculty: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }))}
+              placeholder="e.g., Engineering, Business, Medicine, Law"
+              style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '12px', border: '1px solid rgba(74,144,217,0.3)', background: 'rgba(255,255,255,0.05)', color: '#F8F9FA', fontSize: '1rem', outline: 'none' }} />
+          </div>
           <div>
             <label style={{
               display: 'block',
@@ -316,7 +345,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -349,7 +378,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -380,7 +409,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -410,7 +439,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -439,7 +468,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -469,7 +498,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -500,7 +529,7 @@ export default function EditUniversityPage() {
                 width: '100%',
                 padding: '0.875rem 1rem',
                 borderRadius: '12px',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 background: 'rgba(255, 255, 255, 0.05)',
                 color: '#F8F9FA',
                 fontSize: '1rem',
@@ -513,12 +542,12 @@ export default function EditUniversityPage() {
         </div>
 
         {/* University Officials Section */}
-        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(212, 175, 55, 0.3)' }}>
+        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(74, 144, 217, 0.3)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
             <h2 style={{
               fontSize: '1.25rem',
               fontWeight: '700',
-              color: '#D4AF37',
+              color: '#4A90D9',
               fontFamily: 'Playfair Display, serif'
             }}>
               University Officials
@@ -529,9 +558,9 @@ export default function EditUniversityPage() {
               style={{
                 padding: '0.5rem 1rem',
                 borderRadius: '8px',
-                background: 'rgba(212, 175, 55, 0.1)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                color: '#D4AF37',
+                background: 'rgba(74, 144, 217, 0.1)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
+                color: '#4A90D9',
                 cursor: 'pointer',
                 fontWeight: '500',
                 fontSize: '0.875rem'
@@ -550,7 +579,7 @@ export default function EditUniversityPage() {
                     padding: '1.5rem',
                     borderRadius: '12px',
                     background: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(212, 175, 55, 0.2)'
+                    border: '1px solid rgba(74, 144, 217, 0.2)'
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
@@ -594,7 +623,7 @@ export default function EditUniversityPage() {
                           width: '100%',
                           padding: '0.75rem',
                           borderRadius: '8px',
-                          border: '1px solid rgba(212, 175, 55, 0.2)',
+                          border: '1px solid rgba(74, 144, 217, 0.2)',
                           background: 'rgba(255, 255, 255, 0.05)',
                           color: '#F8F9FA',
                           fontSize: '0.875rem',
@@ -622,7 +651,7 @@ export default function EditUniversityPage() {
                           width: '100%',
                           padding: '0.75rem',
                           borderRadius: '8px',
-                          border: '1px solid rgba(212, 175, 55, 0.2)',
+                          border: '1px solid rgba(74, 144, 217, 0.2)',
                           background: 'rgba(255, 255, 255, 0.05)',
                           color: '#F8F9FA',
                           fontSize: '0.875rem',
@@ -657,7 +686,7 @@ export default function EditUniversityPage() {
                           width: '100%',
                           padding: '0.75rem',
                           borderRadius: '8px',
-                          border: '1px solid rgba(212, 175, 55, 0.2)',
+                          border: '1px solid rgba(74, 144, 217, 0.2)',
                           background: 'rgba(255, 255, 255, 0.05)',
                           color: '#F8F9FA',
                           fontSize: '0.875rem',
@@ -692,7 +721,7 @@ export default function EditUniversityPage() {
                 padding: '0.875rem 1.5rem',
                 borderRadius: '8px',
                 background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 color: 'rgba(248, 249, 250, 0.7)',
                 cursor: 'pointer',
                 fontWeight: '500'
@@ -710,7 +739,7 @@ export default function EditUniversityPage() {
               gap: '0.5rem',
               padding: '0.875rem 1.5rem',
               borderRadius: '8px',
-              background: saving ? 'rgba(212, 175, 55, 0.5)' : 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+              background: saving ? 'rgba(74, 144, 217, 0.5)' : 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
               border: 'none',
               color: '#000000',
               fontWeight: '600',

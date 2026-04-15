@@ -9,25 +9,50 @@ import PremiumStats from '@/components/PremiumStats';
 import PageGallery from '@/components/PageGallery';
 import { Director } from '@/types/admin';
 
+const DEFAULTS = {
+  heroTitle: 'About Global Education Council',
+  heroSubtitle: "We started with a simple belief: no student should have to choose between their dreams and their family. Since 2015, we've been building bridges between world-class universities and Indian students who deserve every opportunity.",
+  missionTitle: 'Our Heart',
+  missionBody: 'To ensure that every talented student in India can access world-class education without leaving their loved ones behind. We believe education should bring families together, not tear them apart.',
+  visionTitle: 'Our Dream',
+  visionBody: 'A future where every Indian student can pursue their passion, achieve their potential, and make their family proud - all while staying rooted in the community that shaped them.',
+  howTitle: 'How We Help You',
+  help1Title: 'We Listen to Your Story',
+  help1Body: 'Every student is unique. We take time to understand your dreams, your challenges, and what matters most to you and your family.',
+  help2Title: 'We Find Your Path',
+  help2Body: 'With connections to universities worldwide, we help you discover programs that align with your passion and your future goals.',
+  help3Title: 'We Walk Beside You',
+  help3Body: "From your first question to graduation day, we're here - answering questions, solving problems, celebrating victories.",
+  help4Title: 'We Keep Our Promise',
+  help4Body: "Quality education, close to home, with support that never wavers. That's our commitment to every student we serve.",
+  trustTitle: 'Why Families Trust Us',
+  trust1: "We've helped over 10,000 students achieve their dreams",
+  trust2: 'Quality education that parents can trust',
+  trust3: 'Study locally, succeed globally',
+  trust4: 'Honest guidance, no hidden surprises',
+  leadersTitle: 'Our Leadership Team',
+  leadersSubtitle: 'Meet the dedicated professionals guiding students toward their dreams',
+  partnersTitle: 'Our European Partners',
+  partnersSubtitle: 'Collaborating with universities across 12+ European countries',
+};
+
 export default function AboutPage() {
   const [directors, setDirectors] = useState<Director[]>([]);
   const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState<Record<string, string>>(DEFAULTS);
 
   useEffect(() => {
-    fetchDirectors();
+    Promise.all([
+      fetch('/api/directors').then(r => r.json()),
+      fetch('/api/admin/pages?page=about').then(r => r.json()),
+    ]).then(([dirs, pageData]) => {
+      setDirectors(Array.isArray(dirs) ? dirs : []);
+      if (pageData) setContent({ ...DEFAULTS, ...pageData });
+      setLoading(false);
+    });
   }, []);
 
-  const fetchDirectors = async () => {
-    try {
-      const response = await fetch('/api/directors');
-      const data = await response.json();
-      setDirectors(data);
-    } catch (error) {
-      console.error('Failed to fetch directors:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const c = (key: string) => content[key] || DEFAULTS[key as keyof typeof DEFAULTS] || '';
   return (
     <div style={{
       minHeight: '100vh',
@@ -36,13 +61,16 @@ export default function AboutPage() {
       fontFamily: 'Inter, sans-serif',
       position: 'relative'
     }}>
+      {/* Background — team/community abroad */}
+      <div style={{ position: 'fixed', inset: 0, backgroundImage: 'url(https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format&fit=crop)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.1, zIndex: 0, pointerEvents: 'none' }} />
+      <div style={{ position: 'fixed', inset: 0, background: 'linear-gradient(135deg, rgba(0,0,0,0.93) 0%, rgba(212,175,55,0.05) 100%)', zIndex: 0, pointerEvents: 'none' }} />
       {/* Subtle Gradient Orbs */}
       <div style={{
         position: 'fixed',
         width: '600px',
         height: '600px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)',
         top: '-10%',
         right: '-10%',
         filter: 'blur(100px)',
@@ -53,7 +81,7 @@ export default function AboutPage() {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(74, 144, 217, 0.1) 0%, transparent 70%)',
         bottom: '-10%',
         left: '-10%',
         filter: 'blur(100px)',
@@ -96,12 +124,12 @@ export default function AboutPage() {
               letterSpacing: '-0.02em',
               lineHeight: '1.1'
             }}>
-              About <span style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+              {c('heroTitle').split(' ').slice(0, -2).join(' ')} <span style={{
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
-              }}>Global Education Council</span>
+              }}>{c('heroTitle').split(' ').slice(-2).join(' ')}</span>
             </h1>
             <PremiumDivider />
             <p style={{
@@ -111,8 +139,7 @@ export default function AboutPage() {
               margin: '0 auto',
               lineHeight: '1.8'
             }}>
-              We started with a simple belief: no student should have to choose between their dreams and their family. 
-              Since 2015, we&apos;ve been building bridges between world-class universities and Indian students who deserve every opportunity.
+              {c('heroSubtitle')}
             </p>
             <div style={{
               height: '1px',
@@ -132,50 +159,40 @@ export default function AboutPage() {
             <div style={{
               padding: '2.5rem',
               borderRadius: '24px',
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+              border: '1px solid rgba(74, 144, 217, 0.3)',
               backdropFilter: 'blur(20px)',
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)'
             }}>
-              <Target style={{ width: '48px', height: '48px', color: '#D4AF37', marginBottom: '1.5rem' }} />
+              <Target style={{ width: '48px', height: '48px', color: '#4A90D9', marginBottom: '1.5rem' }} />
               <h2 style={{
-                fontSize: '1.875rem',
-                fontWeight: '700',
-                marginBottom: '1rem',
+                fontSize: '1.875rem', fontWeight: '700', marginBottom: '1rem',
                 fontFamily: 'Playfair Display, serif',
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Our Heart</h2>
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+              }}>{c('missionTitle')}</h2>
               <p style={{ color: 'rgba(248, 249, 250, 0.7)', lineHeight: '1.8', fontSize: '1.125rem' }}>
-                To ensure that every talented student in India can access world-class education without leaving their loved ones behind. 
-                We believe education should bring families together, not tear them apart.
+                {c('missionBody')}
               </p>
             </div>
 
             <div style={{
               padding: '2.5rem',
               borderRadius: '24px',
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+              border: '1px solid rgba(74, 144, 217, 0.3)',
               backdropFilter: 'blur(20px)',
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)'
             }}>
-              <Eye style={{ width: '48px', height: '48px', color: '#D4AF37', marginBottom: '1.5rem' }} />
+              <Eye style={{ width: '48px', height: '48px', color: '#4A90D9', marginBottom: '1.5rem' }} />
               <h2 style={{
-                fontSize: '1.875rem',
-                fontWeight: '700',
-                marginBottom: '1rem',
+                fontSize: '1.875rem', fontWeight: '700', marginBottom: '1rem',
                 fontFamily: 'Playfair Display, serif',
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Our Dream</h2>
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+              }}>{c('visionTitle')}</h2>
               <p style={{ color: 'rgba(248, 249, 250, 0.7)', lineHeight: '1.8', fontSize: '1.125rem' }}>
-                A future where every Indian student can pursue their passion, achieve their potential, and make their family proud - 
-                all while staying rooted in the community that shaped them.
+                {c('visionBody')}
               </p>
             </div>
           </div>
@@ -183,45 +200,28 @@ export default function AboutPage() {
           {/* What We Do */}
           <div style={{ marginBottom: '5rem' }}>
             <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: '700',
-              marginBottom: '3rem',
-              textAlign: 'center',
-              fontFamily: 'Playfair Display, serif'
+              fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '700', marginBottom: '3rem',
+              textAlign: 'center', fontFamily: 'Playfair Display, serif', color: '#F8F9FA'
             }}>
-              How We <span style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Help You</span>
+              {c('howTitle').split(' ').slice(0, -1).join(' ')} <span style={{
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+              }}>{c('howTitle').split(' ').slice(-1)}</span>
             </h2>
             <div style={{
               padding: '2.5rem',
               borderRadius: '24px',
               background: 'rgba(255, 255, 255, 0.05)',
               backdropFilter: 'blur(30px) saturate(180%)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
+              border: '1px solid rgba(74, 144, 217, 0.3)',
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)'
             }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {[
-                  {
-                    title: 'We Listen to Your Story',
-                    description: 'Every student is unique. We take time to understand your dreams, your challenges, and what matters most to you and your family.'
-                  },
-                  {
-                    title: 'We Find Your Path',
-                    description: 'With connections to universities worldwide, we help you discover programs that align with your passion and your future goals.'
-                  },
-                  {
-                    title: 'We Walk Beside You',
-                    description: 'From your first question to graduation day, we&apos;re here - answering questions, solving problems, celebrating victories.'
-                  },
-                  {
-                    title: 'We Keep Our Promise',
-                    description: 'Quality education, close to home, with support that never wavers. That&apos;s our commitment to every student we serve.'
-                  }
+                  { title: c('help1Title'), description: c('help1Body') },
+                  { title: c('help2Title'), description: c('help2Body') },
+                  { title: c('help3Title'), description: c('help3Body') },
+                  { title: c('help4Title'), description: c('help4Body') },
                 ].map((item, index) => (
                   <div 
                     key={index} 
@@ -235,7 +235,7 @@ export default function AboutPage() {
                       fontWeight: '700',
                       marginBottom: '0.75rem',
                       fontFamily: 'Playfair Display, serif',
-                      background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                      background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text'
@@ -254,29 +254,20 @@ export default function AboutPage() {
           {/* Why Choose Us */}
           <div>
             <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3rem)',
-              fontWeight: '700',
-              marginBottom: '3rem',
-              textAlign: 'center',
-              fontFamily: 'Playfair Display, serif'
+              fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '700', marginBottom: '3rem',
+              textAlign: 'center', fontFamily: 'Playfair Display, serif', color: '#F8F9FA'
             }}>
-              Why Families <span style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Trust Us</span>
+              {c('trustTitle').split(' ').slice(0, -2).join(' ')} <span style={{
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+              }}>{c('trustTitle').split(' ').slice(-2).join(' ')}</span>
             </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '1.5rem'
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               {[
-                { icon: Users, text: 'We&apos;ve helped over 10,000 students achieve their dreams' },
-                { icon: Award, text: 'Quality education that parents can trust' },
-                { icon: Target, text: 'Study locally, succeed globally' },
-                { icon: Eye, text: 'Honest guidance, no hidden surprises' }
+                { icon: Users, text: c('trust1') },
+                { icon: Award, text: c('trust2') },
+                { icon: Target, text: c('trust3') },
+                { icon: Eye, text: c('trust4') },
               ].map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -285,14 +276,14 @@ export default function AboutPage() {
                     style={{
                       padding: '2rem',
                       borderRadius: '16px',
-                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+                      border: '1px solid rgba(74, 144, 217, 0.3)',
                       backdropFilter: 'blur(20px)',
                       textAlign: 'center',
                       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)'
                     }}
                   >
-                    <Icon style={{ width: '40px', height: '40px', color: '#D4AF37', margin: '0 auto 1rem' }} />
+                    <Icon style={{ width: '40px', height: '40px', color: '#4A90D9', margin: '0 auto 1rem' }} />
                     <p style={{ color: 'rgba(248, 249, 250, 0.9)', fontSize: '1rem', fontWeight: '500' }}>
                       {item.text}
                     </p>
@@ -305,7 +296,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(74, 144, 217, 0.05)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <h2 style={{
@@ -313,7 +304,7 @@ export default function AboutPage() {
               fontWeight: '700',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Our Achievements
             </h2>
@@ -332,18 +323,18 @@ export default function AboutPage() {
               fontWeight: '700',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
-              Our Leadership Team
+              {c('leadersTitle')}
             </h2>
             <PremiumDivider />
             <p style={{ fontSize: '1.125rem', color: 'rgba(248, 249, 250, 0.7)', maxWidth: '700px', margin: '1rem auto 0' }}>
-              Meet the dedicated professionals guiding students toward their dreams
+              {c('leadersSubtitle')}
             </p>
           </div>
 
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '3rem', color: '#D4AF37' }}>
+            <div style={{ textAlign: 'center', padding: '3rem', color: '#4A90D9' }}>
               Loading directors...
             </div>
           ) : (
@@ -358,8 +349,8 @@ export default function AboutPage() {
                   style={{
                     padding: '2rem',
                     borderRadius: '20px',
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     backdropFilter: 'blur(20px)',
                     textAlign: 'center',
                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
@@ -367,7 +358,7 @@ export default function AboutPage() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
-                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(212, 175, 55, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(74, 144, 217, 0.3)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -379,8 +370,8 @@ export default function AboutPage() {
                     width: '150px',
                     height: '150px',
                     borderRadius: '50%',
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%)',
-                    border: '3px solid rgba(212, 175, 55, 0.4)',
+                    background: 'linear-gradient(135deg, rgba(74, 144, 217, 0.2) 0%, rgba(74, 144, 217, 0.05) 100%)',
+                    border: '3px solid rgba(74, 144, 217, 0.4)',
                     margin: '0 auto 1.5rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -389,7 +380,7 @@ export default function AboutPage() {
                     overflow: 'hidden',
                     position: 'relative'
                   }}>
-                    {director.image && director.image.startsWith('http') ? (
+                    {director.image ? (
                       <img 
                         src={director.image} 
                         alt={director.name}
@@ -416,7 +407,7 @@ export default function AboutPage() {
 
                   <p style={{
                     fontSize: '0.9375rem',
-                    color: '#D4AF37',
+                    color: '#4A90D9',
                     marginBottom: '1rem',
                     fontWeight: '600'
                   }}>
@@ -440,7 +431,7 @@ export default function AboutPage() {
       </section>
 
       {/* European Network Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.5)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{
@@ -448,12 +439,12 @@ export default function AboutPage() {
               fontWeight: '700',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
-              Our European Partners
+              {c('partnersTitle')}
             </h2>
             <p style={{ fontSize: '1.125rem', color: 'rgba(248, 249, 250, 0.7)', maxWidth: '700px', margin: '0 auto' }}>
-              Collaborating with universities across 12+ European countries
+              {c('partnersSubtitle')}
             </p>
           </div>
           <EuropeanFlags />

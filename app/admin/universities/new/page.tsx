@@ -12,8 +12,9 @@ export default function NewUniversityPage() {
   const [toast, setToast] = useState<{ msg: string; ok: boolean } | null>(null);
   const [formData, setFormData] = useState({
     name: '', country: '', location: '', programs: 0, rating: 4.5,
-    image: '', description: '', website: '',
+    image: '🎓', logo: '', description: '', website: '',
     established: new Date().getFullYear(), students: 0, details: '',
+    faculty: [] as string[], category: 'both' as 'skill' | 'overseas' | 'recruitment' | 'both',
     keyPersons: [] as Array<{ id: string; name: string; position: string; image: string; bio?: string }>
   });
 
@@ -57,7 +58,7 @@ export default function NewUniversityPage() {
 
   const inp: React.CSSProperties = {
     width: '100%', padding: '0.875rem 1rem', borderRadius: '12px',
-    border: '1px solid rgba(212,175,55,0.3)', background: 'rgba(255,255,255,0.05)',
+    border: '1px solid rgba(74,144,217,0.3)', background: 'rgba(255,255,255,0.05)',
     color: '#F8F9FA', fontSize: '1rem', outline: 'none', boxSizing: 'border-box'
   };
   const lbl: React.CSSProperties = {
@@ -69,16 +70,16 @@ export default function NewUniversityPage() {
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <Link href="/admin/universities">
-          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)', color: '#4A90D9', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={20} />
           </button>
         </Link>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif' }}>
           Add New University
         </h1>
       </div>
 
-      <form onSubmit={handleSubmit} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', border: '1px solid rgba(212,175,55,0.3)', padding: '2rem' }}>
+      <form onSubmit={handleSubmit} style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', border: '1px solid rgba(74,144,217,0.3)', padding: '2rem' }}>
         {toast && (
           <div style={{ marginBottom: '1.5rem', padding: '0.75rem 1rem', borderRadius: '8px', background: toast.ok ? 'rgba(34,197,94,0.15)' : 'rgba(220,38,38,0.15)', border: `1px solid ${toast.ok ? 'rgba(34,197,94,0.4)' : 'rgba(220,38,38,0.4)'}`, color: toast.ok ? '#4ade80' : '#f87171', fontSize: '0.875rem' }}>
             {toast.msg}
@@ -100,11 +101,32 @@ export default function NewUniversityPage() {
           </div>
           <div>
             <label style={lbl}>Flag Emoji</label>
-            <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="e.g., flag emoji" style={inp} />
+            <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="e.g., 🇳🇱" style={inp} />
+          </div>
+          <div>
+            <label style={lbl}>Category</label>
+            <select name="category" value={formData.category}
+              onChange={e => setFormData(prev => ({ ...prev, category: e.target.value as typeof formData.category }))}
+              style={{ ...inp, background: 'rgba(10,10,20,0.9)' }}>
+              <option value="skill">Skill Development</option>
+              <option value="overseas">Overseas / Study Abroad</option>
+              <option value="recruitment">Recruitment</option>
+              <option value="both">Both (Skill + Overseas)</option>
+            </select>
+          </div>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <ImageUpload label="University Logo (shown in carousel & detail page)" value={formData.logo} onChange={url => setFormData(prev => ({ ...prev, logo: url }))} />
+          </div>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <label style={lbl}>Faculties / Specialisations <span style={{ color: 'rgba(248,249,250,0.4)', fontWeight: '400', textTransform: 'none' }}>(comma-separated)</span></label>
+            <input type="text"
+              value={formData.faculty.join(', ')}
+              onChange={e => setFormData(prev => ({ ...prev, faculty: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }))}
+              placeholder="e.g., Engineering, Business, Medicine"
+              style={inp} />
           </div>
           <div>
             <label style={lbl}>Programs *</label>
-            <input type="number" name="programs" value={formData.programs} onChange={handleChange} required min="0" style={inp} />
           </div>
           <div>
             <label style={lbl}>Rating (0-5) *</label>
@@ -132,22 +154,30 @@ export default function NewUniversityPage() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(212,175,55,0.3)' }}>
+        {/* University Officials */}
+        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid rgba(74,144,217,0.3)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>University Officials</h2>
-            <button type="button" onClick={addKeyPerson} style={{ padding: '0.5rem 1rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', fontSize: '0.875rem' }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif' }}>
+              University Officials
+            </h2>
+            <button type="button" onClick={addKeyPerson} style={{ padding: '0.5rem 1rem', borderRadius: '8px', background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)', color: '#4A90D9', cursor: 'pointer', fontSize: '0.875rem' }}>
               + Add Official
             </button>
           </div>
+
           {formData.keyPersons.length === 0 ? (
-            <div style={{ padding: '2rem', textAlign: 'center', color: 'rgba(248,249,250,0.5)', fontSize: '0.875rem' }}>No officials added yet.</div>
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'rgba(248,249,250,0.5)', fontSize: '0.875rem' }}>
+              No officials added yet.
+            </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {formData.keyPersons.map((person, index) => (
-                <div key={person.id} style={{ padding: '1.5rem', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(212,175,55,0.2)' }}>
+                <div key={person.id} style={{ padding: '1.5rem', borderRadius: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(74,144,217,0.2)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                     <span style={{ fontWeight: '600', color: 'rgba(248,249,250,0.9)' }}>Official #{index + 1}</span>
-                    <button type="button" onClick={() => removeKeyPerson(index)} style={{ padding: '0.25rem 0.75rem', borderRadius: '6px', background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.3)', color: '#EF4444', cursor: 'pointer', fontSize: '0.75rem' }}>Remove</button>
+                    <button type="button" onClick={() => removeKeyPerson(index)} style={{ padding: '0.25rem 0.75rem', borderRadius: '6px', background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.3)', color: '#EF4444', cursor: 'pointer', fontSize: '0.75rem' }}>
+                      Remove
+                    </button>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                     <div>
@@ -159,7 +189,11 @@ export default function NewUniversityPage() {
                       <input type="text" value={person.position} onChange={e => updateKeyPerson(index, 'position', e.target.value)} required style={{ ...inp, padding: '0.75rem', fontSize: '0.875rem' }} />
                     </div>
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <ImageUpload label="Photo" value={person.image} onChange={(url) => updateKeyPerson(index, 'image', url)} />
+                      <ImageUpload
+                        label="Photo"
+                        value={person.image}
+                        onChange={(url) => updateKeyPerson(index, 'image', url)}
+                      />
                     </div>
                     <div style={{ gridColumn: '1 / -1' }}>
                       <label style={{ ...lbl, fontSize: '0.75rem' }}>Bio</label>
@@ -174,9 +208,11 @@ export default function NewUniversityPage() {
 
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
           <Link href="/admin/universities">
-            <button type="button" style={{ padding: '0.875rem 1.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,175,55,0.3)', color: 'rgba(248,249,250,0.7)', cursor: 'pointer', fontWeight: '500' }}>Cancel</button>
+            <button type="button" style={{ padding: '0.875rem 1.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(74,144,217,0.3)', color: 'rgba(248,249,250,0.7)', cursor: 'pointer', fontWeight: '500' }}>
+              Cancel
+            </button>
           </Link>
-          <button type="submit" disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.875rem 1.5rem', borderRadius: '8px', background: loading ? 'rgba(212,175,55,0.5)' : 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000', fontWeight: '600', cursor: loading ? 'not-allowed' : 'pointer' }}>
+          <button type="submit" disabled={loading} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.875rem 1.5rem', borderRadius: '8px', background: loading ? 'rgba(74,144,217,0.5)' : 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)', border: 'none', color: '#000', fontWeight: '600', cursor: loading ? 'not-allowed' : 'pointer' }}>
             <Save size={18} />
             {loading ? 'Saving...' : 'Save University'}
           </button>

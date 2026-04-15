@@ -47,7 +47,7 @@ export default function EuropeanLandmarks() {
         >
           <div style={{
             fontSize: 'clamp(4rem, 15vw, 6rem)',
-            filter: 'drop-shadow(0 10px 30px rgba(212, 175, 55, 0.4))',
+            filter: 'drop-shadow(0 10px 30px rgba(74, 144, 217, 0.4))',
             animation: activeIndex === index ? 'float 3s ease-in-out infinite' : 'none'
           }}>
             {landmark.icon}
@@ -56,14 +56,14 @@ export default function EuropeanLandmarks() {
             textAlign: 'center',
             padding: 'clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 2rem)',
             borderRadius: '12px',
-            background: 'rgba(212, 175, 55, 0.1)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            background: 'rgba(74, 144, 217, 0.1)',
+            border: '1px solid rgba(74, 144, 217, 0.3)',
             backdropFilter: 'blur(10px)'
           }}>
             <div style={{
               fontSize: 'clamp(1.125rem, 4vw, 1.5rem)',
               fontWeight: '700',
-              color: '#D4AF37',
+              color: '#4A90D9',
               marginBottom: '0.25rem',
               fontFamily: 'Playfair Display, serif'
             }}>

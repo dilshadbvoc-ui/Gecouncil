@@ -20,13 +20,32 @@ export default function Home() {
       fontFamily: 'Inter, sans-serif',
       position: 'relative'
     }}>
+      {/* Hero background image — European university campus */}
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundImage: 'url(https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80&auto=format&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        opacity: 0.12,
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
+      {/* Gold gradient overlay */}
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 50%, rgba(212,175,55,0.06) 100%)',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
       {/* Subtle Gradient Orbs */}
       <div style={{
         position: 'fixed',
         width: '600px',
         height: '600px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)',
         top: '-10%',
         right: '-10%',
         filter: 'blur(100px)',
@@ -37,7 +56,7 @@ export default function Home() {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(74,144,217,0.08) 0%, transparent 70%)',
         bottom: '-10%',
         left: '-10%',
         filter: 'blur(100px)',
@@ -48,7 +67,7 @@ export default function Home() {
       <ModernNavigation />
 
       {/* Hero Section */}
-      <section style={{ paddingTop: '6rem', paddingBottom: '3rem', padding: '6rem 1rem 3rem', position: 'relative', zIndex: 1 }}>
+      <section style={{ padding: '5.5rem 1.5rem 3rem', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div className="hero-grid" style={{
             display: 'flex',
@@ -117,7 +136,7 @@ export default function Home() {
                 gap: '0.75rem',
                 padding: 'clamp(0.875rem, 3vw, 1.125rem) clamp(1.5rem, 5vw, 2.5rem)',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                 border: 'none',
                 color: '#000000',
                 fontSize: 'clamp(0.875rem, 3.5vw, 1rem)',
@@ -126,17 +145,17 @@ export default function Home() {
                 maxWidth: '400px',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: '600',
-                boxShadow: '0 8px 30px rgba(212, 175, 55, 0.4)',
+                boxShadow: '0 8px 30px rgba(74, 144, 217, 0.4)',
                 transition: 'all 0.3s ease',
                 letterSpacing: '0.02em'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(212, 175, 55, 0.5)';
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(74, 144, 217, 0.5)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 30px rgba(212, 175, 55, 0.4)';
+                e.currentTarget.style.boxShadow = '0 8px 30px rgba(74, 144, 217, 0.4)';
               }}>
                 <span>Partner With Us</span>
                 <ArrowRight style={{ width: '20px', height: '20px' }} />
@@ -156,7 +175,7 @@ export default function Home() {
                   width: '48px',
                   height: '48px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(212, 175, 55, 0.3)',
+                  backgroundColor: 'rgba(74, 144, 217, 0.3)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
@@ -178,7 +197,7 @@ export default function Home() {
                     fontSize: '0.8125rem',
                     fontWeight: '500',
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     backdropFilter: 'blur(10px)',
                     color: 'rgba(248, 249, 250, 0.9)',
                     letterSpacing: '0.02em'
@@ -191,21 +210,16 @@ export default function Home() {
 
             {/* Right Content - Diagram Visualization */}
             <div style={{
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              minHeight: '300px',
-              height: 'clamp(300px, 50vw, 500px)',
               width: '100%',
+              maxWidth: '520px',
+              margin: '0 auto',
+              aspectRatio: '1 / 1',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              overflow: 'hidden',
-              backdropFilter: 'blur(30px)',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               position: 'relative',
-              zIndex: 1
-            }} className="premium-card shimmer">
+              zIndex: 1,
+            }}>
               <DiagramVisualization />
             </div>
           </div>
@@ -307,7 +321,7 @@ export default function Home() {
       </section>
 
       {/* European Partners Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{
@@ -315,7 +329,7 @@ export default function Home() {
               fontWeight: 'bold',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Our European Network
             </h2>
@@ -329,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* Premium Stats Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.4)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <h2 style={{
@@ -337,7 +351,7 @@ export default function Home() {
               fontWeight: 'bold',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Our Impact in Numbers
             </h2>
@@ -348,7 +362,7 @@ export default function Home() {
       </section>
 
       {/* University Partners Carousel */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 0', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 0', backgroundColor: 'rgba(0, 0, 0, 0.2)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '0 1rem' }}>
             <h2 style={{
@@ -356,7 +370,7 @@ export default function Home() {
               fontWeight: 'bold',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Partner Universities
             </h2>
@@ -369,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* Global Connection Map */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.3)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{
@@ -377,7 +391,7 @@ export default function Home() {
               fontWeight: 'bold',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Connecting World to India
             </h2>
@@ -390,7 +404,7 @@ export default function Home() {
       </section>
 
       {/* European Landmarks */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{
@@ -398,7 +412,7 @@ export default function Home() {
               fontWeight: 'bold',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Study in Iconic Cities
             </h2>
@@ -411,7 +425,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose GEC Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{
@@ -466,7 +480,7 @@ export default function Home() {
                     padding: '2rem',
                     borderRadius: '20px',
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     backdropFilter: 'blur(10px)',
                     transition: 'all 0.3s'
                   }}
@@ -506,7 +520,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{
@@ -554,8 +568,8 @@ export default function Home() {
                 <div style={{
                   padding: '2rem 1.5rem',
                   borderRadius: '20px',
-                  background: 'rgba(212, 175, 55, 0.15)',
-                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  background: 'rgba(74, 144, 217, 0.15)',
+                  border: '1px solid rgba(74, 144, 217, 0.3)',
                   height: '100%'
                 }}>
                   <div style={{
@@ -593,7 +607,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section - Enhanced */}
-      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <section style={{ padding: 'clamp(3rem, 8vw, 5rem) 1rem', backgroundColor: 'rgba(0, 0, 0, 0.2)', position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 style={{
@@ -625,7 +639,7 @@ export default function Home() {
                     padding: '2.5rem 2rem',
                     borderRadius: '20px',
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     backdropFilter: 'blur(10px)',
                     textAlign: 'center',
                     transition: 'all 0.3s'
@@ -735,7 +749,7 @@ export default function Home() {
       {/* Footer */}
       <footer style={{
         padding: '3rem 1.5rem',
-        borderTop: '1px solid rgba(212, 175, 55, 0.3)',
+        borderTop: '1px solid rgba(74, 144, 217, 0.3)',
         textAlign: 'center',
         color: 'rgba(255, 255, 255, 0.5)',
         fontSize: '0.875rem'

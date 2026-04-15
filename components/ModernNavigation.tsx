@@ -39,27 +39,20 @@ export default function ModernNavigation() {
           gap: '1rem',
           textDecoration: 'none'
         }}>
-          <div style={{
-            width: '44px',
-            height: '44px',
-            borderRadius: '10px',
-            background: '#000000',
-            border: '2px solid #D4AF37',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 'bold',
-            color: '#D4AF37',
-            fontSize: '1.5rem',
-            fontFamily: 'Playfair Display, serif'
-          }}>
-            G
-          </div>
+          <img
+            src="/logo.png"
+            alt="GEC Logo"
+            style={{
+              width: '64px',
+              height: '64px',
+              objectFit: 'contain'
+            }}
+          />
           <div>
             <div style={{
               fontSize: '1.125rem',
               fontWeight: '700',
-              color: '#D4AF37',
+              color: '#4A90D9',
               lineHeight: '1.2',
               fontFamily: 'Playfair Display, serif',
               letterSpacing: '-0.02em'
@@ -68,7 +61,7 @@ export default function ModernNavigation() {
             </div>
             <div style={{
               fontSize: '0.625rem',
-              color: 'rgba(212, 175, 55, 0.7)',
+              color: 'rgba(74, 144, 217, 0.7)',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               fontFamily: 'Inter, sans-serif',
@@ -103,9 +96,9 @@ export default function ModernNavigation() {
             <button style={{
               padding: '0.625rem 1.5rem',
               borderRadius: '8px',
-              border: '1.5px solid #D4AF37',
+              border: '1.5px solid #4A90D9',
               backgroundColor: 'transparent',
-              color: '#D4AF37',
+              color: '#4A90D9',
               fontSize: '0.875rem',
               fontWeight: '600',
               cursor: 'pointer',
@@ -113,12 +106,12 @@ export default function ModernNavigation() {
               letterSpacing: '0.01em'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#D4AF37';
+              e.currentTarget.style.backgroundColor = '#4A90D9';
               e.currentTarget.style.color = '#000000';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = '#D4AF37';
+              e.currentTarget.style.color = '#4A90D9';
             }}>
               Login
             </button>
@@ -126,7 +119,7 @@ export default function ModernNavigation() {
           <button style={{
             padding: '0.625rem 1.5rem',
             borderRadius: '8px',
-            background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+            background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
             border: 'none',
             color: '#000000',
             fontSize: '0.875rem',
@@ -134,7 +127,7 @@ export default function ModernNavigation() {
             cursor: 'pointer',
             transition: 'all 0.3s ease',
             letterSpacing: '0.01em',
-            boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+            boxShadow: '0 4px 15px rgba(74, 144, 217, 0.3)'
           }}
           onClick={() => {
             console.log('Partner button clicked');
@@ -142,11 +135,11 @@ export default function ModernNavigation() {
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 8px 20px rgba(212, 175, 55, 0.4)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(74, 144, 217, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.3)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(74, 144, 217, 0.3)';
           }}>
             Partner With Us
           </button>
@@ -202,9 +195,9 @@ export default function ModernNavigation() {
                 <button style={{
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1.5px solid #D4AF37',
+                  border: '1.5px solid #4A90D9',
                   backgroundColor: 'transparent',
-                  color: '#D4AF37',
+                  color: '#4A90D9',
                   fontSize: '0.875rem',
                   fontWeight: '600',
                   cursor: 'pointer',
@@ -216,7 +209,7 @@ export default function ModernNavigation() {
               <button style={{
                 padding: '0.75rem',
                 borderRadius: '8px',
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                 border: 'none',
                 color: '#000000',
                 fontSize: '0.875rem',
@@ -259,7 +252,7 @@ function NavLink({ href, active, children }: { href: string; active: boolean; ch
         padding: '0.625rem 1.125rem',
         borderRadius: '8px',
         color: active ? '#000000' : 'rgba(255, 255, 255, 0.85)',
-        backgroundColor: active ? '#D4AF37' : 'transparent',
+        backgroundColor: active ? '#4A90D9' : 'transparent',
         fontSize: '0.9375rem',
         fontWeight: active ? '600' : '500',
         textDecoration: 'none',
@@ -281,11 +274,11 @@ function MobileNavLink({ href, active, onClick, children }: { href: string; acti
         padding: '0.875rem 1rem',
         borderRadius: '8px',
         color: active ? '#000000' : 'rgba(255, 255, 255, 0.85)',
-        backgroundColor: active ? '#D4AF37' : 'rgba(255, 255, 255, 0.05)',
+        backgroundColor: active ? '#4A90D9' : 'rgba(255, 255, 255, 0.05)',
         fontSize: '0.9375rem',
         fontWeight: active ? '600' : '500',
         textDecoration: 'none',
-        border: active ? 'none' : '1px solid rgba(212, 175, 55, 0.2)'
+        border: active ? 'none' : '1px solid rgba(74, 144, 217, 0.2)'
       }}
     >
       {children}

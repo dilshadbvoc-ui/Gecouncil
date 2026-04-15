@@ -29,10 +29,34 @@ export interface Program {
   duration: string;
   language: string;
   description: string;
-  category: 'skill' | 'overseas' | 'both';
+  category: 'skill' | 'overseas' | 'both' | 'recruitment';
   tuitionFee?: string;
   intake?: string;
+  // Extended fields
+  requirements?: string;
+  applicationDeadline?: string;
+  scholarships?: string;
+  // Recruitment-specific
+  countryId?: string;
+  countryName?: string;
+  salary?: string;
+  jobType?: string; // Full-time, Part-time, Contract
+  sector?: string;
+  visaSponsorship?: boolean;
   createdAt?: Date;
+}
+
+export interface Country {
+  id: string;
+  name: string;
+  flag: string;       // emoji flag
+  continent: string;
+  description: string;
+  category: 'overseas' | 'recruitment' | 'both';
+  highlights?: string[];  // key facts / selling points
+  image?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface KeyPerson {
@@ -49,6 +73,7 @@ export interface Director {
   position: string;
   image: string;
   bio?: string;
+  linkedin?: string;
   order: number;
 }
 
@@ -80,4 +105,33 @@ export interface AdminUser {
   password: string;
   name: string;
   role: 'admin' | 'editor';
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  result: string;   // e.g. "University of Edinburgh — Business"
+  quote: string;
+  image: string;
+  order: number;
+  createdAt?: Date;
+}
+
+export interface SiteSettings {
+  id?: string;
+  companyName: string;
+  tagline: string;
+  email: string;
+  phone: string;
+  whatsapp?: string;
+  address: string;
+  city: string;
+  country: string;
+  logoUrl?: string;
+  footerText: string;
+  socialLinkedin?: string;
+  socialInstagram?: string;
+  socialFacebook?: string;
+  socialTwitter?: string;
+  updatedAt?: Date;
 }

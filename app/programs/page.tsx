@@ -52,7 +52,7 @@ export default function ProgramsPage() {
         width: '600px',
         height: '600px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(74, 144, 217, 0.15) 0%, transparent 70%)',
         top: '-10%',
         right: '-10%',
         filter: 'blur(100px)',
@@ -63,7 +63,7 @@ export default function ProgramsPage() {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(74, 144, 217, 0.1) 0%, transparent 70%)',
         bottom: '-10%',
         left: '-10%',
         filter: 'blur(100px)',
@@ -107,7 +107,7 @@ export default function ProgramsPage() {
               lineHeight: '1.1'
             }}>
               Study <span style={{
-                background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -142,8 +142,8 @@ export default function ProgramsPage() {
                 style={{
                   padding: '2.5rem',
                   borderRadius: '24px',
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+                  border: '1px solid rgba(74, 144, 217, 0.3)',
                   backdropFilter: 'blur(20px)',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)'
@@ -155,13 +155,13 @@ export default function ProgramsPage() {
                   borderRadius: '16px',
                   background: 'rgba(255, 255, 255, 0.05)',
                   backdropFilter: 'blur(30px) saturate(180%)',
-                  border: '1px solid rgba(212, 175, 55, 0.3)',
+                  border: '1px solid rgba(74, 144, 217, 0.3)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '1.5rem'
                 }}>
-                  <BookOpen style={{ width: '32px', height: '32px', color: '#D4AF37' }} />
+                  <BookOpen style={{ width: '32px', height: '32px', color: '#4A90D9' }} />
                 </div>
 
                 <h3 style={{
@@ -169,7 +169,7 @@ export default function ProgramsPage() {
                   fontWeight: '700',
                   marginBottom: '1.5rem',
                   fontFamily: 'Playfair Display, serif',
-                  background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                  background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
@@ -179,15 +179,15 @@ export default function ProgramsPage() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(248, 249, 250, 0.7)' }}>
-                    <Clock style={{ width: '20px', height: '20px', color: '#D4AF37' }} />
+                    <Clock style={{ width: '20px', height: '20px', color: '#4A90D9' }} />
                     <span style={{ fontSize: '1rem' }}>{program.duration}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(248, 249, 250, 0.7)' }}>
-                    <DollarSign style={{ width: '20px', height: '20px', color: '#D4AF37' }} />
+                    <DollarSign style={{ width: '20px', height: '20px', color: '#4A90D9' }} />
                     <span style={{ fontSize: '1rem' }}>{program.tuition}</span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(248, 249, 250, 0.7)' }}>
-                    <Globe style={{ width: '20px', height: '20px', color: '#D4AF37' }} />
+                    <Globe style={{ width: '20px', height: '20px', color: '#4A90D9' }} />
                     <span style={{ fontSize: '1rem' }}>{program.universities} Universities</span>
                   </div>
                 </div>
@@ -210,7 +210,7 @@ export default function ProgramsPage() {
                           backdropFilter: 'blur(30px) saturate(180%)',
                           fontSize: '0.875rem',
                           color: 'rgba(248, 249, 250, 0.9)',
-                          border: '1px solid rgba(212, 175, 55, 0.3)'
+                          border: '1px solid rgba(74, 144, 217, 0.3)'
                         }}
                       >
                         {spec}
@@ -233,7 +233,7 @@ export default function ProgramsPage() {
               fontWeight: '700',
               marginBottom: '1rem',
               fontFamily: 'Playfair Display, serif',
-              color: '#D4AF37'
+              color: '#4A90D9'
             }}>
               Available at Top Universities
             </h2>

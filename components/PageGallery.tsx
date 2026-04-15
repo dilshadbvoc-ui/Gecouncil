@@ -38,7 +38,7 @@ export default function PageGallery({ page }: PageGalleryProps) {
             fontWeight: '700',
             marginBottom: '1rem',
             fontFamily: 'Playfair Display, serif',
-            color: '#D4AF37'
+            color: '#4A90D9'
           }}>
             Gallery
           </h2>
@@ -55,14 +55,14 @@ export default function PageGallery({ page }: PageGalleryProps) {
               style={{
                 borderRadius: '20px',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(74, 144, 217, 0.1) 100%)',
+                border: '1px solid rgba(74, 144, 217, 0.3)',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.3)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(74, 144, 217, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -87,7 +87,7 @@ export default function PageGallery({ page }: PageGalleryProps) {
                   <h3 style={{
                     fontSize: '1.25rem',
                     fontWeight: '700',
-                    color: '#D4AF37',
+                    color: '#4A90D9',
                     marginBottom: '0.5rem',
                     fontFamily: 'Playfair Display, serif'
                   }}>

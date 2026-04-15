@@ -13,33 +13,33 @@ export default function PremiumDivider() {
       <div style={{
         width: '60px',
         height: '1px',
-        background: 'linear-gradient(90deg, transparent, #D4AF37)',
+        background: 'linear-gradient(90deg, transparent, #4A90D9)',
       }} />
       <div style={{
         width: '8px',
         height: '8px',
         borderRadius: '50%',
-        background: '#D4AF37',
-        boxShadow: '0 0 20px rgba(212, 175, 55, 0.6)'
+        background: '#4A90D9',
+        boxShadow: '0 0 20px rgba(74, 144, 217, 0.6)'
       }} />
       <div style={{
         width: '12px',
         height: '12px',
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, #D4AF37, #F4E4C1)',
-        boxShadow: '0 0 25px rgba(212, 175, 55, 0.8)'
+        background: 'linear-gradient(135deg, #4A90D9, #7BB8F0)',
+        boxShadow: '0 0 25px rgba(74, 144, 217, 0.8)'
       }} />
       <div style={{
         width: '8px',
         height: '8px',
         borderRadius: '50%',
-        background: '#D4AF37',
-        boxShadow: '0 0 20px rgba(212, 175, 55, 0.6)'
+        background: '#4A90D9',
+        boxShadow: '0 0 20px rgba(74, 144, 217, 0.6)'
       }} />
       <div style={{
         width: '60px',
         height: '1px',
-        background: 'linear-gradient(90deg, #D4AF37, transparent)',
+        background: 'linear-gradient(90deg, #4A90D9, transparent)',
       }} />
     </div>
   );

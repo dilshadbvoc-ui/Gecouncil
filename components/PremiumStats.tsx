@@ -52,20 +52,20 @@ export default function PremiumStats() {
             textAlign: 'center',
             padding: 'clamp(1.5rem, 4vw, 2rem)',
             borderRadius: '16px',
-            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
-            border: '1px solid rgba(212, 175, 55, 0.3)',
+            background: 'linear-gradient(135deg, rgba(74, 144, 217, 0.1) 0%, rgba(74, 144, 217, 0.05) 100%)',
+            border: '1px solid rgba(74, 144, 217, 0.3)',
             backdropFilter: 'blur(10px)',
             transition: 'all 0.3s ease',
             cursor: 'pointer'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-10px)';
-            e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.6)';
-            e.currentTarget.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.2)';
+            e.currentTarget.style.borderColor = 'rgba(74, 144, 217, 0.6)';
+            e.currentTarget.style.boxShadow = '0 20px 40px rgba(74, 144, 217, 0.2)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+            e.currentTarget.style.borderColor = 'rgba(74, 144, 217, 0.3)';
             e.currentTarget.style.boxShadow = 'none';
           }}
         >
@@ -73,7 +73,7 @@ export default function PremiumStats() {
           <div style={{
             fontSize: 'clamp(2rem, 7vw, 2.5rem)',
             fontWeight: '700',
-            color: '#D4AF37',
+            color: '#4A90D9',
             marginBottom: '0.5rem',
             fontFamily: 'Playfair Display, serif'
           }}>

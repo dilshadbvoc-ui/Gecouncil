@@ -70,7 +70,7 @@ export default function EnquiriesManagement() {
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', background: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ color: '#D4AF37', fontSize: '1.25rem' }}>Loading...</div>
+        <div style={{ color: '#4A90D9', fontSize: '1.25rem' }}>Loading...</div>
       </div>
     );
   }
@@ -79,14 +79,14 @@ export default function EnquiriesManagement() {
     <div style={{ color: '#F8F9FA' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <Link href="/admin/dashboard">
-          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)', color: '#4A90D9', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={20} />
           </button>
         </Link>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', flex: 1 }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif', flex: 1 }}>
           Partnership Enquiries
         </h1>
-        <div style={{ padding: '0.5rem 1rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', fontWeight: '600' }}>
+        <div style={{ padding: '0.5rem 1rem', borderRadius: '8px', background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)', color: '#4A90D9', fontWeight: '600' }}>
           {enquiries.length} Total
         </div>
       </div>
@@ -99,9 +99,9 @@ export default function EnquiriesManagement() {
               textAlign: 'center',
               borderRadius: '16px',
               background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(212, 175, 55, 0.3)'
+              border: '1px solid rgba(74, 144, 217, 0.3)'
             }}>
-              <Mail size={48} style={{ color: '#D4AF37', margin: '0 auto 1rem' }} />
+              <Mail size={48} style={{ color: '#4A90D9', margin: '0 auto 1rem' }} />
               <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#F8F9FA', marginBottom: '0.5rem' }}>
                 No Enquiries Yet
               </h3>
@@ -119,8 +119,8 @@ export default function EnquiriesManagement() {
                     style={{
                       padding: '1.5rem',
                       borderRadius: '16px',
-                      background: selectedEnquiry?.id === enquiry.id ? 'rgba(212, 175, 55, 0.1)' : 'rgba(255, 255, 255, 0.05)',
-                      border: `1px solid ${selectedEnquiry?.id === enquiry.id ? 'rgba(212, 175, 55, 0.5)' : 'rgba(212, 175, 55, 0.3)'}`,
+                      background: selectedEnquiry?.id === enquiry.id ? 'rgba(74, 144, 217, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                      border: `1px solid ${selectedEnquiry?.id === enquiry.id ? 'rgba(74, 144, 217, 0.5)' : 'rgba(74, 144, 217, 0.3)'}`,
                       cursor: 'pointer',
                       transition: 'all 0.3s'
                     }}
@@ -157,18 +157,18 @@ export default function EnquiriesManagement() {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(248, 249, 250, 0.8)' }}>
-                        <Mail size={14} style={{ color: '#D4AF37' }} />
+                        <Mail size={14} style={{ color: '#4A90D9' }} />
                         {enquiry.email}
                       </div>
                       {enquiry.phone && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(248, 249, 250, 0.8)' }}>
-                          <Phone size={14} style={{ color: '#D4AF37' }} />
+                          <Phone size={14} style={{ color: '#4A90D9' }} />
                           {enquiry.phone}
                         </div>
                       )}
                       {enquiry.country && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(248, 249, 250, 0.8)' }}>
-                          <MapPin size={14} style={{ color: '#D4AF37' }} />
+                          <MapPin size={14} style={{ color: '#4A90D9' }} />
                           {enquiry.country}
                         </div>
                       )}
@@ -202,10 +202,10 @@ export default function EnquiriesManagement() {
             padding: '2rem',
             borderRadius: '16px',
             background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(212, 175, 55, 0.3)'
+            border: '1px solid rgba(74, 144, 217, 0.3)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1.5rem' }}>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif' }}>
                 Enquiry Details
               </h2>
               <button
@@ -248,7 +248,7 @@ export default function EnquiriesManagement() {
                 <label style={{ fontSize: '0.75rem', color: 'rgba(248, 249, 250, 0.6)', marginBottom: '0.25rem', display: 'block' }}>
                   Email
                 </label>
-                <a href={`mailto:${selectedEnquiry.email}`} style={{ fontSize: '1rem', color: '#D4AF37', textDecoration: 'none' }}>
+                <a href={`mailto:${selectedEnquiry.email}`} style={{ fontSize: '1rem', color: '#4A90D9', textDecoration: 'none' }}>
                   {selectedEnquiry.email}
                 </a>
               </div>
@@ -258,7 +258,7 @@ export default function EnquiriesManagement() {
                   <label style={{ fontSize: '0.75rem', color: 'rgba(248, 249, 250, 0.6)', marginBottom: '0.25rem', display: 'block' }}>
                     Phone
                   </label>
-                  <a href={`tel:${selectedEnquiry.phone}`} style={{ fontSize: '1rem', color: '#D4AF37', textDecoration: 'none' }}>
+                  <a href={`tel:${selectedEnquiry.phone}`} style={{ fontSize: '1rem', color: '#4A90D9', textDecoration: 'none' }}>
                     {selectedEnquiry.phone}
                   </a>
                 </div>
@@ -295,7 +295,7 @@ export default function EnquiriesManagement() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#F8F9FA',
                     outline: 'none',

@@ -95,7 +95,7 @@ export default function GalleriesManagement() {
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', background: '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ color: '#D4AF37', fontSize: '1.25rem' }}>Loading...</div>
+        <div style={{ color: '#4A90D9', fontSize: '1.25rem' }}>Loading...</div>
       </div>
     );
   }
@@ -104,16 +104,16 @@ export default function GalleriesManagement() {
     <div style={{ color: '#F8F9FA' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <Link href="/admin/dashboard">
-          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <button style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)', color: '#4A90D9', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
             <ArrowLeft size={20} />
           </button>
         </Link>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#D4AF37', fontFamily: 'Playfair Display, serif', flex: 1 }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#4A90D9', fontFamily: 'Playfair Display, serif', flex: 1 }}>
           Page Galleries
         </h1>
         <button
           onClick={() => { setShowForm(true); setEditingId(null); setFormData({ page: 'universities', title: '', description: '', image: '', order: 1 }); }}
-          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '8px', background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)', border: 'none', color: '#000000', fontWeight: '600', cursor: 'pointer' }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '8px', background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)', border: 'none', color: '#000000', fontWeight: '600', cursor: 'pointer' }}
         >
           <Plus size={18} />
           Add Gallery Item
@@ -125,9 +125,9 @@ export default function GalleriesManagement() {
             padding: '2rem',
             borderRadius: '16px',
             background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(212, 175, 55, 0.3)'
+            border: '1px solid rgba(74, 144, 217, 0.3)'
           }}>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#D4AF37', marginBottom: '1.5rem' }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#4A90D9', marginBottom: '1.5rem' }}>
               {editingId ? 'Edit Gallery Item' : 'Add New Gallery Item'}
             </h2>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -143,7 +143,7 @@ export default function GalleriesManagement() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#F8F9FA',
                     outline: 'none'
@@ -169,7 +169,7 @@ export default function GalleriesManagement() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#F8F9FA',
                     outline: 'none'
@@ -189,7 +189,7 @@ export default function GalleriesManagement() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#F8F9FA',
                     outline: 'none',
@@ -220,7 +220,7 @@ export default function GalleriesManagement() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     background: 'rgba(255, 255, 255, 0.05)',
                     color: '#F8F9FA',
                     outline: 'none'
@@ -234,7 +234,7 @@ export default function GalleriesManagement() {
                   style={{
                     padding: '0.75rem 1.5rem',
                     borderRadius: '8px',
-                    background: 'linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%)',
+                    background: 'linear-gradient(135deg, #4A90D9 0%, #2563EB 100%)',
                     border: 'none',
                     color: '#000000',
                     fontWeight: '600',
@@ -253,7 +253,7 @@ export default function GalleriesManagement() {
                     padding: '0.75rem 1.5rem',
                     borderRadius: '8px',
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(212, 175, 55, 0.3)',
+                    border: '1px solid rgba(74, 144, 217, 0.3)',
                     color: 'rgba(248, 249, 250, 0.7)',
                     cursor: 'pointer'
                   }}
@@ -277,7 +277,7 @@ export default function GalleriesManagement() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(212, 175, 55, 0.3)'
+                border: '1px solid rgba(74, 144, 217, 0.3)'
               }}
             >
               <div style={{
@@ -295,7 +295,7 @@ export default function GalleriesManagement() {
                   borderRadius: '6px',
                   background: 'rgba(0, 0, 0, 0.8)',
                   fontSize: '0.75rem',
-                  color: '#D4AF37',
+                  color: '#4A90D9',
                   textTransform: 'capitalize'
                 }}>
                   {gallery.page}
@@ -317,9 +317,9 @@ export default function GalleriesManagement() {
                       flex: 1,
                       padding: '0.5rem',
                       borderRadius: '6px',
-                      background: 'rgba(212, 175, 55, 0.1)',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
-                      color: '#D4AF37',
+                      background: 'rgba(74, 144, 217, 0.1)',
+                      border: '1px solid rgba(74, 144, 217, 0.3)',
+                      color: '#4A90D9',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
